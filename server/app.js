@@ -4,6 +4,12 @@ const path = require('path');
 
 const app = express();
 
+app.models = require("../db/models");
+
+console.log(app.models)
+
+//const Promise = require("bluebird");
+
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 

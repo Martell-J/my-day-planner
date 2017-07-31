@@ -4,7 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 
 import App from './components/App';
-import DayPlanner from './components/DayPlanner';
+import DayPlannerPage from './containers/DayPlanner';
 import NotFound from './components/NotFound';
 
 // Implement browserrouter and switch for route management, implement a 404 page
@@ -12,7 +12,7 @@ const Routes = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={App} />
-      <Route path="/DayPlanner" component={DayPlanner} />
+      <Route path="/dayplanner" component={DayPlannerPage} />
       <Route component={NotFound} />
     </Switch>
   </Router>
