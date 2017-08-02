@@ -3,11 +3,16 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import Routes from './routes';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import './index.css';
+
+injectTapEventPlugin();
 ReactDOM.render(
-  <Routes/>,
+  <MuiThemeProvider>
+    <Routes/>
+  </MuiThemeProvider>,
   document.getElementById('root')
 );

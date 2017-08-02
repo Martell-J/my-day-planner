@@ -1,9 +1,9 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
 
 import './style.css';
 
 // 404 page for all-'other' route directions
-export default class NotFound extends Component {
+class NotFound extends Component {
 
   render() {
     return (
@@ -15,3 +15,5 @@ export default class NotFound extends Component {
     );
   }
 }
+
+export default NotFound

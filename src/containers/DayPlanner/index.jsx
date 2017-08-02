@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import DayPlanner from "../../components/DayPlanner";
 
-export default class DayPlannerPage extends Component {
+class DayPlannerPage extends Component {
 
   /*
    * Class constructor.
@@ -27,3 +27,5 @@ export default class DayPlannerPage extends Component {
   }
 
 }
+
+export default DayPlannerPage;
