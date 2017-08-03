@@ -4,11 +4,16 @@ const path = require('path');
 
 const app = express();
 
-app.models = require("../db/models");
+const connection = require("../db/connection");
 
-console.log(app.models)
+app.Sequelize = connection.Sequelize;
+app.sequelize = connection.sequelize;
 
 //const Promise = require("bluebird");
+
+// Inject the db routes via express router, pass sequelize object to it
+const dbRoutes = require("./routes/db.js")(app);
+app.use("/db", dbRoutes);
 
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
