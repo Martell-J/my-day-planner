@@ -7,7 +7,21 @@ class Layout extends Component {
     return (
       <div>
         <HeaderPage/>
-        {this.props.children}
+        <div style={{
+            "minHeight": "100%",
+            "textAlign": "center"
+          }} >
+          <div style={{
+              "position": "relative",
+              "marginLeft": "100px",
+              "marginRight": "100px",
+              "marginTop": "30px",
+              "display": "block",
+              "overflowY": "auto",
+            }}>
+            {this.props.children}
+          </div>
+        </div>
         <Footer/>
       </div>
     );

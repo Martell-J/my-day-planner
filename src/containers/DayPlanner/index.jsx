@@ -14,7 +14,9 @@ class DayPlannerPage extends Component {
     this.state = {
       "selectedDate": null,
       "selectedTime": null,
-      "planDetails": null,
+      "selectedDurationMinutes": null,
+      "selectedDurationHours": null,
+      "planDetails": null
     }
 
   }
@@ -37,14 +39,18 @@ class DayPlannerPage extends Component {
   }
 
   handleDateChange(event, date) {
-    console.log(date);
     let self = this;
     self.setState({"selectedDate": date})
   }
 
   handleTimeChange(event, time) {
-    console.log(time)
     let self = this;
+
+    let date = new Date(this.state.selectedDate);
+
+    date.setHours(time.getHours());
+    date.setMinutes(time.getMinutes());
+
     self.setState({"selectedTime": time})
   }
 
@@ -52,6 +58,14 @@ class DayPlannerPage extends Component {
     console.log(details)
     let self = this;
     self.setState({"planDetails": details})
+  }
+
+  handleDurationMinuteChange(event, minutes) {
+    console.log(minutes)
+  }
+
+  handleDurationHourChange(event, hours) {
+    console.log(hours)
   }
 
   render() {
@@ -62,6 +76,8 @@ class DayPlannerPage extends Component {
           handleDateChange={this.handleDateChange.bind(this)}
           handleTimeChange={this.handleTimeChange.bind(this)}
           handlePlanDetailsChange={this.handlePlanDetailsChange.bind(this)}
+          handleDurationMinuteChange={this.handleDurationMinuteChange.bind(this)}
+          handleDurationHourChange={this.handleDurationHourChange.bind(this)}
         />
     );
 
