@@ -11,9 +11,12 @@ const sequelize = new Sequelize(connection, {
 sequelize.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
-    // Sample From http://docs.sequelizejs.com/manual/installation/getting-started.html
+
     const Plan = sequelize.define('plan', {
-      "plan_datetime": {
+      "plan_start_datetime": {
+        "type": Sequelize.DATE
+      },
+      "plan_end_datetime": {
         "type": Sequelize.DATE
       },
       "plan_details": {
@@ -25,7 +28,7 @@ sequelize.authenticate()
       "underscoredAll": true,
     });
 
-    // force: true will drop the table if it already exists
+    // Refresh this table on each server run
     Plan.sync({"force": true});
 
     sequelize.models = {

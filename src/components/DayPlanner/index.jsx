@@ -8,15 +8,20 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 );
+
+
 let allViews = Object.keys(BigCalendar.views).map(k => BigCalendar.views[k])
+
+
 
 
 // Base DayPlanner example page
 const DayPlanner = ({addPlan, handleDateChange, handleTimeChange, handlePlanDetailsChange,
-                      handleDurationMinuteChange, handleDurationHourChange}) => {
+                    handleDurationMinuteChange, handleDurationHourChange, selectedStartDateTime,
+                    selectedEndDateTime, planDetails}) => {
   return (
     <div style={{"margin":"10px"}}>
-      <Card className="card-outline" style={{"width": "100%", "padding": "15px"}}>
+      <Card className="card-outline" style={{"width": "100%", "padding": "5px"}}>
         <CardHeader
           title="Day Planner"
           subtitle="Build and view your plans"
@@ -24,40 +29,70 @@ const DayPlanner = ({addPlan, handleDateChange, handleTimeChange, handlePlanDeta
         />
         <CardMedia>
           <div style={{"margin": "0 auto", "display": "table"}}>
-            <div style={{"display": "table-cell", "position": "inherit", "width": "50%"}}>
-              <TextField
-                style={{"textAlign":"left"}}
-                floatingLabelText="Plan Details"
-                multiLine={true}
-                onChange={handlePlanDetailsChange} />
+            <div style={{"float": "left", "padding": "10px", "width": "50%"}}>
 
-              <DatePicker
-                floatingLabelText="Select Date"
-                mode="landscape"
-                onChange={handleDateChange} />
-              <TimePicker
-                floatingLabelText="Select Time"
-                onChange={handleTimeChange} />
-              <Paper style={{width:"250px",margin: 10,textAlign: 'center',display: 'inline-block'}} zDepth={1} children={
-
-                <div style={{"display":"inline", "margin": "0 auto", "maxWidth": "220px"}}>
-                  <p style={{"display":"inline"}}>Duration: </p>
-                  <TextField
-                    style = {{width: 60, marginRight: "10px"}}
-                    floatingLabelText="Hours"
-                  />
-                  <TextField
-                    style = {{width: 60}}
-                    floatingLabelText="Minutes"
-                  />
+              <div style={{"margin": "0 auto", "display": "inline-block", "width": "100%", "padding": "10px"}}>
+                <div style={{textAlign: 'center', "display": "inline", "float": "left", "width": "49%"}} >
+                  <Paper zDepth={1} children={
+                    <div style={{"padding": "10px"}}>
+                      <h4>Start Date/Time</h4>
+                      <DatePicker
+                        floatingLabelText="Select Date"
+                        mode="landscape"
+                        onChange={(ev, date) => {
+                          handleDateChange(ev, date, false)
+                        }}
+                        value={selectedStartDateTime}
+                        minDate={new Date()}/>
+                      <TimePicker
+                        floatingLabelText="Select Time"
+                        onChange={(ev, time) => {
+                          handleTimeChange(ev, time, false)
+                        }}
+                        value={selectedStartDateTime}/>
+                    </div>
+                  }/>
                 </div>
-              }/>
-              <br/>
-              <RaisedButton
-                label="Add a Plan"
-                onTouchTap={addPlan} />
+                <div style={{textAlign: 'center', "display": "inline", "float": "right", "width": "49%"}} >
+                  <Paper zDepth={1} children={
+                    <div style={{"padding": "10px"}}>
+                      <h4>End Date/Time</h4>
+                      <DatePicker
+                        floatingLabelText="Select Date"
+                        mode="landscape"
+                        onChange={(ev, date) => {
+                          handleDateChange(ev, date, true)
+                        }}
+                        minDate={selectedStartDateTime}
+                        value={selectedEndDateTime}/>
+                      <TimePicker
+                        floatingLabelText="Select Time"
+                        onChange={(ev, time) => {
+                          handleTimeChange(ev, time, true)
+                        }}
+                        value={selectedEndDateTime}/>
+                    </div>
+                  }/>
+                </div>
+              </div>
+              <div style={{"margin": "0 auto", "display": "inline-block", "width": "100%", "padding": "10px"}}>
+                <TextField
+                   style={{"textAlign":"left"}}
+                   floatingLabelText="Plan Details"
+                   multiLine={true}
+                   onChange={handlePlanDetailsChange}
+                   fullWidth={true}
+                   value={planDetails}/>
+                <br/>
+                <br/>
+                <RaisedButton
+                  label="Add a Plan"
+                  onTouchTap={addPlan} />
+
+              </div>
+
             </div>
-            <div style={{"display": "table-cell", "position": "inherit", "width": "50%", "height": "100%"}}>
+            <div style={{"float": "right", "padding": "10px", "width": "50%", "height": "100%"}}>
               <BigCalendar
                 {...this.props}
                 events={[new Date()]}
@@ -80,8 +115,10 @@ DayPlanner.PropTypes = {
   "handleDateChange": PropTypes.func.isRequired,
   "handleTimeChange": PropTypes.func.isRequired,
   "handlePlanDetailsChange": PropTypes.func.isRequired,
-  "handleDurationMinuteChange": PropTypes.func.isRequired,
-  "handleDurationHourChange": PropTypes.func.isRequired
+  "selectedStartDateTime": PropTypes.instanceOf(Date).isRequired,
+  "selectedEndDateTime": PropTypes.instanceOf(Date).isRequired,
+  "planDetails": PropTypes.string.isRequired,
+  "errors": PropTypes.string.isRequired
 };
 
 export default DayPlanner;
