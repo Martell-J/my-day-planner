@@ -18,7 +18,7 @@ let allViews = Object.keys(BigCalendar.views).map(k => BigCalendar.views[k])
 // Base DayPlanner example page
 const DayPlanner = ({addPlan, handleDateChange, handleTimeChange, handlePlanDetailsChange,
                     handleDurationMinuteChange, handleDurationHourChange, selectedStartDateTime,
-                    selectedEndDateTime, planDetails}) => {
+                    selectedEndDateTime, planDetails, events}) => {
   return (
     <div style={{"margin":"10px"}}>
       <Card className="card-outline" style={{"width": "100%", "padding": "5px"}}>
@@ -95,9 +95,8 @@ const DayPlanner = ({addPlan, handleDateChange, handleTimeChange, handlePlanDeta
             <div style={{"float": "right", "padding": "10px", "width": "50%", "height": "100%"}}>
               <BigCalendar
                 {...this.props}
-                events={[new Date()]}
+                events={events}
                 views={allViews}
-                defaultDate={new Date(2015, 3, 1)}
                 style={{"height":"100%"}}
               />
             </div>
@@ -118,7 +117,8 @@ DayPlanner.PropTypes = {
   "selectedStartDateTime": PropTypes.instanceOf(Date).isRequired,
   "selectedEndDateTime": PropTypes.instanceOf(Date).isRequired,
   "planDetails": PropTypes.string.isRequired,
-  "errors": PropTypes.string.isRequired
+  "errors": PropTypes.string.isRequired,
+  "events": PropTypes.array.isRequired,
 };
 
 export default DayPlanner;

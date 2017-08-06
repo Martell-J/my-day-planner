@@ -4,14 +4,16 @@ const path = require('path');
 
 const app = express();
 
+// parse body messages for post route
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
+
 const connection = require("../db/connection");
 
 app.Sequelize = connection.Sequelize;
 app.sequelize = connection.sequelize;
 
-//const Promise = require("bluebird");
-
-// Inject the db routes via express router, pass sequelize object to it
+// Inject the db routes via express router, pass app to it (sequelize is tied in)
 const dbRoutes = require("./routes/db.js")(app);
 app.use("/db", dbRoutes);
 
@@ -25,5 +27,12 @@ app.use(express.static(path.resolve(__dirname, '..', 'build')));
 app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
 });
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}!`);
+});
+
 
 module.exports = app;

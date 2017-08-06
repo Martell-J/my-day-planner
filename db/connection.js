@@ -5,7 +5,7 @@ const connection = require("../config/config").db;
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(connection, {
   "dialect": "mysql",
-  "logging": true,
+  "logging": false,
 });
 
 sequelize.authenticate()

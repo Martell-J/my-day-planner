@@ -7,33 +7,52 @@ module.exports = (app) => {
 
   const sequelize = app.sequelize;
 
+  const getAllRecords = () => {
+    return new Promise((resolve, reject) => {
+      sequelize.models.Plan.findAll()
+      .then((results) => {
+        let data = _.map(results, (result) => {
+
+          return result.get();
+
+        });
+
+        return resolve(data);
+      })
+      .catch((err) => (
+        reject(err)
+      ))
+    })
+  };
+
+  const insertRecord = (record) => {
+    return new Promise((resolve, reject) => {
+      sequelize.models.Plan.create(record)
+      .then((results) => (resolve(getAllRecords())))
+      .catch((err) => (
+        reject(err)
+      ))
+    })
+  }
+
   router.get("/getplans", (req, res) => {
 
     const getPlans = () => {
 
-      return new Promise((resolve, reject) => {
+      getAllRecords()
+      .then((data)=>{
 
-        sequelize.models.Plan.findAll()
-        .then((results)=>{
+        res.status(200).json({
+          "message": "Records retrieved.",
+          data,
+        });
 
-          let data = _.map(results, (result) => {
-
-            return result.get();
-
-
-          });
-          res.status(200).json({
-            "message": "Records retrieved.",
-            data ,
-          });
-
-        })
-        .catch((err) => {
-          res.status(400).json({
-            "message": "Error retrieving records.",
-          });
-        })
-
+      })
+      .catch((err) => {
+        res.status(400).json({
+          "message": "Error retrieving records.",
+          err
+        });
       })
 
     };
@@ -47,22 +66,19 @@ module.exports = (app) => {
     let postData = req.body;
 
     const addPlan = () => {
-
-      return new Promise((resolve, reject) => {
-
-        sequelize.models.Plan.create(postData)
-        .then((results)=>{
-          res.status(200).json({
-            "message": "Record successfully inserted."
-          });
-        })
-        .catch((err)=>{
-          res.status(400).json({
-            "message": "Error inserting record.",
-          });
-        })
-
-      });
+      insertRecord(postData)
+      .then((data)=>{
+        res.status(200).json({
+          "message": "Record successfully inserted.",
+          data
+        });
+      })
+      .catch((err)=>{
+        res.status(400).json({
+          "message": "Error inserting record.",
+          err
+        });
+      })
 
     };
 

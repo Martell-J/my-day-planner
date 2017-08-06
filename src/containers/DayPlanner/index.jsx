@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Axios from "axios";
 import DayPlanner from "../../components/DayPlanner";
 import moment from "moment";
+const _ = require("underscore");
+const { queries } = require("../../helpers/queries.js");
 
 let emptyDateTimes = {};
 
@@ -27,26 +29,28 @@ class DayPlannerPage extends Component {
       "selectedStartDateTime": emptyDateTimes.startDateTime,
       "selectedEndDateTime": emptyDateTimes.endDateTime,
       "planDetails": "",
-      "errors": ""
+      "errors": "",
+      "events": [],
     }
 
   }
 
   addPlan() {
     let self = this;
-    let date = new Date().toISOString();
-    /*
-    Axios.post('/db/addplan', {
-      "plan_datetime": date,
-      "plan_details": "Do some cool stuff"
-    })
-    .then((result) =>  {
-      console.log(result);
+    let postJSON = {
+      "plan_start_datetime": moment(this.state.selectedStartDateTime).format('YYYY/MM/DD HH:mm:ss'),
+      "plan_end_datetime": moment(this.state.selectedEndDateTime).format('YYYY/MM/DD HH:mm:ss'),
+      "plan_details": this.state.planDetails,
+    }
+
+    queries.insertPlan(postJSON)
+    .then((events) => {
+      self.setState({events})
     })
     .catch((err) => {
       console.log(err);
-    });
-    */
+    })
+
   }
 
   // Handles changes for startDateTimes and endDateTimes
@@ -128,8 +132,16 @@ class DayPlannerPage extends Component {
     self.setState({"planDetails": details})
   }
 
-  componentWillUpdate(){
-    console.log("dadsadsa")
+  componentWillMount(){
+    let self = this;
+    queries.getPlans()
+    .then((events) => {
+      self.setState({events})
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+
   }
 
   render() {
@@ -142,6 +154,7 @@ class DayPlannerPage extends Component {
           handleDateChange={this.handleDateChange.bind(this)}
           handlePlanDetailsChange={this.handlePlanDetailsChange.bind(this)}
           planDetails={this.state.planDetails}
+          events={this.state.events}
         />
     );
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import HeaderPage from "../../containers/Common/HeaderPage.jsx";
-import Footer from "./Footer";
 
 class Layout extends Component {
   render() {
@@ -22,7 +21,6 @@ class Layout extends Component {
             {this.props.children}
           </div>
         </div>
-        <Footer/>
       </div>
     );
   }
