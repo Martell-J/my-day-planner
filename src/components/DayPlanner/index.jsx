@@ -1,5 +1,5 @@
 import React from "react";
-import { RaisedButton, DatePicker, TimePicker, TextField, Paper, Card, CardHeader, CardMedia} from "material-ui";
+import { RaisedButton, DatePicker, TimePicker, TextField, Paper, Card, CardHeader, CardMedia, Snackbar} from "material-ui";
 import PropTypes from 'prop-types';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
@@ -9,32 +9,27 @@ BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 );
 
-
 let allViews = Object.keys(BigCalendar.views).map(k => BigCalendar.views[k])
-
-
-
 
 // Base DayPlanner example page
 const DayPlanner = ({addPlan, handleDateChange, handleTimeChange, handlePlanDetailsChange,
                     handleDurationMinuteChange, handleDurationHourChange, selectedStartDateTime,
-                    selectedEndDateTime, planDetails, events}) => {
+                    selectedEndDateTime, planDetails, events, onErrorDismissal, errors}) => {
   return (
-    <div style={{"margin":"10px"}}>
-      <Card className="card-outline" style={{"width": "100%", "padding": "5px"}}>
+    <div className="dayplanner-container">
+      <Card className="card-outline" style={{}}>
         <CardHeader
           title="Day Planner"
           subtitle="Build and view your plans"
-          style={{"textAlign":"left"}}
+          className="card-header"
         />
         <CardMedia>
-          <div style={{"margin": "0 auto", "display": "table"}}>
-            <div style={{"float": "left", "padding": "10px", "width": "50%"}}>
-
-              <div style={{"margin": "0 auto", "display": "inline-block", "width": "100%", "padding": "10px"}}>
-                <div style={{textAlign: 'center', "display": "inline", "float": "left", "width": "49%"}} >
+          <div className="card-media-outer-container">
+            <div className="card-media-inner-left-container">
+              <div className="day-picker-container">
+                <div className="day-picker paper-left">
                   <Paper zDepth={1} children={
-                    <div style={{"padding": "10px"}}>
+                    <div className="paper-inner">
                       <h4>Start Date/Time</h4>
                       <DatePicker
                         floatingLabelText="Select Date"
@@ -53,9 +48,9 @@ const DayPlanner = ({addPlan, handleDateChange, handleTimeChange, handlePlanDeta
                     </div>
                   }/>
                 </div>
-                <div style={{textAlign: 'center', "display": "inline", "float": "right", "width": "49%"}} >
+                <div className="day-picker paper-right">
                   <Paper zDepth={1} children={
-                    <div style={{"padding": "10px"}}>
+                    <div className="paper-inner">
                       <h4>End Date/Time</h4>
                       <DatePicker
                         floatingLabelText="Select Date"
@@ -75,7 +70,7 @@ const DayPlanner = ({addPlan, handleDateChange, handleTimeChange, handlePlanDeta
                   }/>
                 </div>
               </div>
-              <div style={{"margin": "0 auto", "display": "inline-block", "width": "100%", "padding": "10px"}}>
+              <div className="day-picker-bottom-entry">
                 <TextField
                    style={{"textAlign":"left"}}
                    floatingLabelText="Plan Details"
@@ -92,7 +87,7 @@ const DayPlanner = ({addPlan, handleDateChange, handleTimeChange, handlePlanDeta
               </div>
 
             </div>
-            <div style={{"float": "right", "padding": "10px", "width": "50%", "height": "100%"}}>
+            <div className="card-media-inner-right-container">
               <BigCalendar
                 {...this.props}
                 events={events}
@@ -104,7 +99,12 @@ const DayPlanner = ({addPlan, handleDateChange, handleTimeChange, handlePlanDeta
         </CardMedia>
       </Card>
 
-
+      <Snackbar
+        open={(errors !== "")}
+        message={errors}
+        autoHideDuration={4500}
+        onRequestClose={onErrorDismissal}
+      />
     </div>
   );
 }
@@ -119,6 +119,7 @@ DayPlanner.PropTypes = {
   "planDetails": PropTypes.string.isRequired,
   "errors": PropTypes.string.isRequired,
   "events": PropTypes.array.isRequired,
+  "onErrorDismissal": PropTypes.func.isRequired,
 };
 
 export default DayPlanner;

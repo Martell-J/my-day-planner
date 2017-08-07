@@ -1,0 +1,18 @@
+.base{
+  height: 100%;
+}
+
+.base-outline-container{
+  min-height: 100%;
+  text-align: center;
+  top: 64px;
+  width: 100%;
+}
+
+.base-inner-container{
+  position: relative;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 30px;
+  display: block;
+}

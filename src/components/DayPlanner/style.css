@@ -6,4 +6,65 @@
   -moz-border-radius: 10px 10px 10px 10px !important;
   -webkit-border-radius: 10px 10px 10px 10px !important;
   border: 0px solid #000000 !important;
+  width: 100%;
+  padding: 5px;
+}
+
+.dayplanner-container{
+  margin: 10px;
+}
+
+.card-header{
+  text-align: left;
+}
+
+.card-media-outer-container{
+  margin: 0 auto;
+  display: table;
+}
+
+.card-media-inner-left-container{
+  display: table-cell;
+  padding: 10px;
+  width: 50%;
+}
+
+.card-media-inner-right-container{
+  display: table-cell;
+  position: absolute;
+  padding: 10px;
+  width: 50%;
+  height: 100%
+}
+
+.day-picker-container{
+  margin: 0 auto;
+  display: inline-block;
+  width: 100%;
+  padding: 10px
+}
+
+.day-picker{
+  text-align: center;
+  display: inline;
+  width: 50%
+}
+
+.paper-left{
+  float: left;
+}
+
+.paper-right{
+  float: right;
+}
+
+.paper-inner{
+  padding: 10px;
+}
+
+.day-picker-bottom-entry{
+  margin: 0 auto;
+  display: inline-block;
+  width: 100%;
+  padding: 10px
 }

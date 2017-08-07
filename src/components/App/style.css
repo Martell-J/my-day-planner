@@ -1,0 +1,37 @@
+.video-container{
+  height: 400px;
+  width: 800px;
+  display: inline-block;
+  padding-top: -40px;
+}
+
+video{
+  display: inline-block;
+}
+/* All instances of '!important' are preserved to overwrite Material-UI's default styling*/
+.card-outline{
+  display: inline-block;
+  width:74% !important;
+  margin-bottom: 30px;
+}
+
+.card-header, .card-content{
+  padding: 20px !important;
+  text-align: left !important;
+}
+
+.card-header > :first-child{
+  padding-right: 0px !important;
+}
+
+.card-header > :first-child > span:first-of-type{
+  font-size: 28px !important;
+}
+
+.card-header > :first-child > span:nth-of-type(2){
+  font-size: 24px !important;
+}
+
+ul{
+  margin-left:20px;
+}

@@ -5,3 +5,7 @@ html,body
   background-color: #e6f0ff;
   position: relative;
 }
+
+#root{
+  height:100%;
+}
