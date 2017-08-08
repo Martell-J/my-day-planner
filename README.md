@@ -17,4 +17,4 @@ After pulling a copy of the repository
 
 # Day Planner view
 
-![DayPlannerView](../master/docs/dayplannerexample.png)
+![DayPlannerView](../master/docs/dayplannerexample.PNG)
