@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import DayPlanner from "../../components/DayPlanner";
 import moment from "moment";
-const _ = require("underscore");
 
 const { queries } = require("../../helpers/queries.js");
 
@@ -69,7 +68,7 @@ class DayPlannerPage extends Component {
     }else{
       // When validation passes, format each date item in the post-data JSON Object
       // as a date-string which can be interpreted by MySQL
-      _.map(Object.keys(postJSON), (key) => {
+      Object.keys(postJSON).forEach((key) => {
         if(postJSON[key] instanceof Date){
           postJSON[key] = postJSON[key].format('YYYY/MM/DD HH:mm:ss');
         }
