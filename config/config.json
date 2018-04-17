@@ -1,1 +1,5 @@
-{"db": "mysql://dayplanneradmin:password@127.0.0.1:3306/mydayplanner"}
+{
+  "db": "mysql://dayplanneradmin:password@127.0.0.1:3306/mydayplanner",
+  "api_key": "samplekey123",
+  "api_url": "http://localhost:10010"
+}

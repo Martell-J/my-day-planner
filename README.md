@@ -9,9 +9,9 @@ you to operate basic navigational features, and create a plan for future dates.
 
 After pulling a copy of the repository
 
-'npm install' - Garner dependencies
+'yarn install' - Garner dependencies
 
-'npm run build' - Build the app into a client/server operable state
+'yarn run build' - Build the app into a client/server operable state
 
 'node server' - Runs the server, defaults to port 3000
 

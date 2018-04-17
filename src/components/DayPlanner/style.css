@@ -6,7 +6,7 @@
   -moz-border-radius: 10px 10px 10px 10px !important;
   -webkit-border-radius: 10px 10px 10px 10px !important;
   border: 0px solid #000000 !important;
-  width: 100%;
+  width: 100vh;
   padding: 5px;
 }
 
@@ -20,7 +20,9 @@
 
 .card-media-outer-container{
   margin: 0 auto;
-  display: table;
+  display: block;
+  position: relative;
+  display: table-row
 }
 
 .card-media-inner-left-container{
@@ -34,7 +36,8 @@
   position: absolute;
   padding: 10px;
   width: 50%;
-  height: 100%
+  height: 100%;
+  top: 0;
 }
 
 .day-picker-container{

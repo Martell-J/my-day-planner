@@ -10,17 +10,18 @@ const sequelize = new Sequelize(connection, {
 
 sequelize.authenticate()
   .then(() => {
-    console.log('Connection has been established successfully.');
 
-    const Plan = sequelize.define('plan', {
+    console.log("Connection has been established successfully.");
+
+    const Plan = sequelize.define("plan", {
       "plan_start_datetime": {
-        "type": Sequelize.DATE
+        "type": Sequelize.DATE,
       },
       "plan_end_datetime": {
-        "type": Sequelize.DATE
+        "type": Sequelize.DATE,
       },
       "plan_details": {
-        "type": Sequelize.STRING
+        "type": Sequelize.STRING,
       },
 
     }, {
@@ -29,16 +30,19 @@ sequelize.authenticate()
     });
 
     // Refresh this table on each server run
-    Plan.sync({"force": true});
+    Plan.sync({ "force": true });
 
     sequelize.models = {
       Plan,
-    }
+    };
 
   })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
+  .catch((err) => {
+
+    console.error("Unable to connect to the database:", err);
+
   });
+
 module.exports = {
-  Sequelize, sequelize
-}
+  Sequelize, sequelize,
+};

@@ -9,8 +9,6 @@ BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 );
 
-let allViews = Object.keys(BigCalendar.views).map(k => BigCalendar.views[k])
-
 // Base DayPlanner example page
 const DayPlanner = ({addPlan, handleDateChange, handleTimeChange, handlePlanDetailsChange,
                     handleDurationMinuteChange, handleDurationHourChange, selectedStartDateTime,
@@ -91,7 +89,6 @@ const DayPlanner = ({addPlan, handleDateChange, handleTimeChange, handlePlanDeta
               <BigCalendar
                 {...this.props}
                 events={events}
-                views={allViews}
                 style={{"height":"100%"}}
               />
             </div>

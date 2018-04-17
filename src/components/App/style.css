@@ -11,7 +11,7 @@ video{
 /* All instances of '!important' are preserved to overwrite Material-UI's default styling*/
 .card-outline{
   display: inline-block;
-  width:74% !important;
+  width:80% !important;
   margin-bottom: 30px;
 }
 

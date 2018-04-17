@@ -17,8 +17,8 @@ const Header = withRouter(({history}) => {
             <IconMenu
               iconStyle={{"color": "white"}}
               iconButtonElement={<IconButton><MenuIcon /></IconButton>}
-              onItemTouchTap={(event, child) => {
-                history.push(child.props.value);
+              onChange={(event, value) => {
+                history.push(value);
               }}
             >
               <MenuItem
