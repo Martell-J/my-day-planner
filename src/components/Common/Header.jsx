@@ -1,12 +1,12 @@
-import React from 'react';
-import { AppBar, IconMenu, IconButton, MenuItem } from 'material-ui';
-import MenuIcon from 'material-ui/svg-icons/navigation/menu';
+import React from "react";
+import { AppBar, IconMenu, IconButton, MenuItem } from "material-ui";
+import MenuIcon from "material-ui/svg-icons/navigation/menu";
 import { withRouter } from "react-router-dom";
 
 
-const Header = withRouter(({history}) => {
+const Header = withRouter(({ history }) => {
 
-  return(
+  return (
     <div>
 
       <AppBar
@@ -15,25 +15,28 @@ const Header = withRouter(({history}) => {
         iconElementLeft={
           <div>
             <IconMenu
-              iconStyle={{"color": "white"}}
+              iconStyle={{ "color": "white" }}
               iconButtonElement={<IconButton><MenuIcon /></IconButton>}
               onChange={(event, value) => {
+
                 history.push(value);
+
               }}
             >
               <MenuItem
                 primaryText={"Home"}
                 value={"/"}
-                />
+              />
               <MenuItem
                 primaryText={"Day Planner"}
                 value={"/dayplanner"}
-                />
+              />
             </IconMenu>
           </div>
         }
-        />
+      />
     </div>
-  )
-})
+  );
+
+});
 export default Header;

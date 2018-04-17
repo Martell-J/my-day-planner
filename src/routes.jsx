@@ -9,7 +9,7 @@ import DayPlannerPage from "./containers/DayPlanner";
 import NotFound from "./components/NotFound";
 import Layout from "./components/Common";
 
-import Provider from "react-redux";
+import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
 
 import createStore from "./store/createstore";
@@ -17,6 +17,7 @@ import createStore from "./store/createstore";
 const { store, persistor } = createStore();
 
 // Implement browserrouter and switch for route management, implement a 404 page
+// <Route path="/login" component={LoginPage} />
 const Routes = () =>
   <Provider store={store}>
     <PersistGate persistor={persistor}>
@@ -25,7 +26,6 @@ const Routes = () =>
           <Switch>
             <Route exact path="/" component={App} />
             <Route path="/dayplanner" component={DayPlannerPage} />
-            <Route path="/login" component={LoginPage} />
             <Route component={NotFound} />
           </Switch>
         </Layout>

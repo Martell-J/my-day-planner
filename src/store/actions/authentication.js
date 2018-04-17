@@ -51,7 +51,9 @@ export let loginUser = (username, password) => {
 
       Axios("/api/login", {
         "method": "post",
-        data,
+        "data": {
+          username, password,
+        },
       }).then((response) => {
 
         let responseData = response.data.result;

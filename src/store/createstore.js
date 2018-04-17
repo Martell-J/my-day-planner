@@ -16,7 +16,7 @@ export default (initialState) => {
   const store = createStore(
     reducers,
     initialState,
-    compose(applyMiddleware([ thunk, createLogger() ]))
+    compose(applyMiddleware(thunk, createLogger()))
   );
 
   store.dispatch(startRehydrate());

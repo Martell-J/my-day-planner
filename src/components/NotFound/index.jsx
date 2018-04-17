@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import './style.css';
+import "./style.css";
 
-// 404 page for all-'other' route directions
+// 404 page for all-"other" route directions
 class NotFound extends Component {
 
   render() {
+
     return (
       <div>
         <h1>
@@ -13,7 +14,9 @@ class NotFound extends Component {
         </h1>
       </div>
     );
+
   }
+
 }
 
-export default NotFound
+export default NotFound;
