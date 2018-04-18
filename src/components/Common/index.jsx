@@ -1,29 +1,26 @@
-import React, { Component } from "react";
+import React from "react";
 import HeaderPage from "../../containers/Common/HeaderPage.jsx";
 import PropTypes from "prop-types";
 import "./style.css";
 
-class Layout extends Component {
+const Layout = ({ history, children }) => {
 
-  render() {
-
-    return (
-      <div className="base">
-        <HeaderPage/>
-        <div className="base-outline-container">
-          <div className="base-inner-container">
-            { this.props.children }
-          </div>
+  return (
+    <div className="base">
+      <HeaderPage history={history} />
+      <div className="base-outline-container">
+        <div className="base-inner-container">
+          { children }
         </div>
       </div>
-    );
+    </div>
+  );
 
-  }
-
-}
+};
 
 Layout.propTypes = {
   "children": PropTypes.object.isRequired,
+  "history": PropTypes.object.isRequired,
 };
 
 

@@ -1,10 +1,8 @@
 import React from "react";
 import { AppBar, IconMenu, IconButton, MenuItem } from "material-ui";
 import MenuIcon from "material-ui/svg-icons/navigation/menu";
-import { withRouter } from "react-router-dom";
 
-
-const Header = withRouter(({ history }) => {
+const Header = ({ history }) => {
 
   return (
     <div>
@@ -38,5 +36,6 @@ const Header = withRouter(({ history }) => {
     </div>
   );
 
-});
+};
+
 export default Header;

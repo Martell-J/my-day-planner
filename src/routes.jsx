@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import App from "./components/App";
 import DayPlannerPage from "./containers/DayPlanner";
 import NotFound from "./components/NotFound";
-import Layout from "./components/Common";
+import Layout from "./containers/Common";
 
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";

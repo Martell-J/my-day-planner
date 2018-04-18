@@ -3,8 +3,26 @@ import Header from "../../components/Common/Header";
 
 class HeaderPage extends Component {
 
-  // In-case we end up programatically setting links based on an auth status...
-  // Render a smart component
+  /*
+   * Class constructor.
+   */
+  constructor(props) {
+
+    super(props);
+
+    this.state = {
+    };
+
+  }
+
+  // Check authorization here.
+  componentWillMount() {
+
+    let self = this;
+
+
+
+  }
 
   render() {
 
