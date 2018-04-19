@@ -21,23 +21,16 @@ class LayoutPage extends Component {
       "history": props.history || {},
       "location": props.location || {},
       "match": props.match || {},
+      "rehydrate": props.rehydrate || {},
     };
-
-  }
-
-  // Check authorization here.
-  componentWillMount() {
-
-    let self = this;
-
-    console.log(self);
 
   }
 
   render() {
 
+    // Render once all dispatched requests complete
     return (
-      <Layout {...this.state} />
+      this.state.rehydrate.isRehydrated ? <Layout {...this.state} /> : false
     );
 
   }
@@ -46,10 +39,11 @@ class LayoutPage extends Component {
 
 const mapStateToProps = (state) => {
 
-  const { authentication } = state;
+  const { authentication, rehydrate } = state;
 
   return {
     authentication,
+    rehydrate,
   };
 
 };
@@ -60,6 +54,7 @@ LayoutPage.propTypes = {
   "history": PropTypes.object.isRequired,
   "location": PropTypes.object.isRequired,
   "match": PropTypes.object.isRequired,
+  "rehydrate": PropTypes.object.isRequired,
 };
 
 export default withRouter(connect(mapStateToProps)(LayoutPage));

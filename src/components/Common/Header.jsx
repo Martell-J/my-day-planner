@@ -1,8 +1,9 @@
 import React from "react";
 import { AppBar, IconMenu, IconButton, MenuItem } from "material-ui";
 import MenuIcon from "material-ui/svg-icons/navigation/menu";
+import PropTypes from "prop-types";
 
-const Header = ({ history }) => {
+const Header = ({ history, authentication }) => {
 
   return (
     <div>
@@ -36,6 +37,11 @@ const Header = ({ history }) => {
     </div>
   );
 
+};
+
+Header.propTypes = {
+  "history": PropTypes.object.isRequired,
+  "authentication": PropTypes.object.isRequired,
 };
 
 export default Header;

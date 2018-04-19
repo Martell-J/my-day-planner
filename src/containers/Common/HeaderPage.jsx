@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Header from "../../components/Common/Header";
+import PropTypes from "prop-types";
 
 class HeaderPage extends Component {
 
@@ -11,27 +12,25 @@ class HeaderPage extends Component {
     super(props);
 
     this.state = {
+      "history": props.history || {},
+      "authentication": props.authentication || {},
     };
-
-  }
-
-  // Check authorization here.
-  componentWillMount() {
-
-    let self = this;
-
-
 
   }
 
   render() {
 
     return (
-      <Header/>
+      <Header {...this.state} />
     );
 
   }
 
 }
+
+HeaderPage.propTypes = {
+  "history": PropTypes.object.isRequired,
+  "authentication": PropTypes.object.isRequired,
+};
 
 export default HeaderPage;
