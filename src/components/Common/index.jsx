@@ -19,7 +19,7 @@ const Layout = ({ history, children, authentication }) => {
 };
 
 Layout.propTypes = {
-  "children": PropTypes.object.isRequired,
+  "children": PropTypes.array.isRequired,
   "history": PropTypes.object.isRequired,
   "authentication": PropTypes.object.isRequired,
 };

@@ -11,6 +11,7 @@ const Login = () => {
 };
 
 Login.propTypes = {
+  "onSubmitLogin": PropTypes.func.isRequired,
 };
 
 export default Login;

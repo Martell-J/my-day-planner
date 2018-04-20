@@ -30,6 +30,10 @@ const Header = ({ history, authentication }) => {
                 primaryText={"Day Planner"}
                 value={"/dayplanner"}
               />
+              <MenuItem
+                primaryText={"Login"}
+                value={"/login"}
+              />
             </IconMenu>
           </div>
         }

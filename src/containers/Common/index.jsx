@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 import Layout from "../../components/Common";
 
-class LayoutPage extends Component {
+class LayoutPage extends React.Component {
 
   /*
    * Class constructor.
@@ -26,12 +26,50 @@ class LayoutPage extends Component {
 
   }
 
+  componentWillReceiveProps(nextProps) {
+
+    this.setState({
+      "authentication": nextProps.authentication,
+      "rehydrate": nextProps.rehydrate,
+    });
+
+  }
+
   render() {
 
-    // Render once all dispatched requests complete
-    return (
-      this.state.rehydrate.isRehydrated ? <Layout {...this.state} /> : false
-    );
+    if (this.state.rehydrate.isRehydrated) {
+
+      // Whitelist items to pass down to the child
+      const includeFromState = [ "authentication", "history", "location", "match", "rehydrate" ];
+
+      const stateKeys = Object.keys(this.state);
+
+      const reducedState = {};
+
+      stateKeys.forEach((key) => {
+
+        if (~includeFromState.findIndex((i) => i === key)) {
+
+          reducedState[key] = this.state[key];
+
+        }
+
+      });
+
+      //TODO: fix this not passing down state.
+      const childrenWithProps = React.Children.map(this.props.children, (child) => {
+
+        // Clone element with props
+        return React.cloneElement(child, { ...reducedState });
+
+      });
+
+      // Render once all dispatched requests complete
+      return <Layout { ...{ ...reducedState, "children": childrenWithProps } } />;
+
+    }
+
+    return false;
 
   }
 

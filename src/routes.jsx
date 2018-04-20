@@ -8,6 +8,7 @@ import App from "./components/App";
 import DayPlannerPage from "./containers/DayPlanner";
 import NotFound from "./components/NotFound";
 import Layout from "./containers/Common";
+import LoginPage from "./containers/Authentication/LoginPage";
 
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
@@ -26,6 +27,7 @@ const Routes = () =>
           <Switch>
             <Route exact path="/" component={App} />
             <Route path="/dayplanner" component={DayPlannerPage} />
+            <Route path="/login" component={LoginPage}/>
             <Route component={NotFound} />
           </Switch>
         </Layout>
