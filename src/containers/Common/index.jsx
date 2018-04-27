@@ -56,16 +56,16 @@ class LayoutPage extends React.Component {
 
       });
 
-      //TODO: fix this not passing down state.
-      const childrenWithProps = React.Children.map(this.props.children, (child) => {
-
-        // Clone element with props
-        return React.cloneElement(child, { ...reducedState });
-
-      });
+      // Override the render of each Route component to feature props from both
+      // route as well as the reducedState determined in this component
+      const childrenWithProps = React.Children.map(this.props.children, (rChild) =>
+        React.cloneElement(rChild, {
+          "render": (routeProps) =>
+            <rChild.props.componentToRender { ...{ ...reducedState, ...routeProps } }/>,
+        }));
 
       // Render once all dispatched requests complete
-      return <Layout { ...{ ...reducedState, "children": childrenWithProps } } />;
+      return <Layout { ...{ ...reducedState, childrenWithProps } } />;
 
     }
 
@@ -88,7 +88,7 @@ const mapStateToProps = (state) => {
 
 LayoutPage.propTypes = {
   "authentication": PropTypes.object.isRequired,
-  "children": PropTypes.object.isRequired,
+  "children": PropTypes.array.isRequired,
   "history": PropTypes.object.isRequired,
   "location": PropTypes.object.isRequired,
   "match": PropTypes.object.isRequired,

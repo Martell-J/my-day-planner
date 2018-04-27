@@ -1,16 +1,19 @@
 import React from "react";
 import HeaderPage from "../../containers/Common/HeaderPage.jsx";
+import { Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./style.css";
 
-const Layout = ({ history, children, authentication }) => {
+const Layout = ({ history, childrenWithProps, authentication }) => {
 
   return (
     <div className="base">
       <HeaderPage history={history} authentication={authentication} />
       <div className="base-outline-container">
         <div className="base-inner-container">
-          { children }
+          <Switch>
+            {childrenWithProps}
+          </Switch>
         </div>
       </div>
     </div>
@@ -19,7 +22,7 @@ const Layout = ({ history, children, authentication }) => {
 };
 
 Layout.propTypes = {
-  "children": PropTypes.array.isRequired,
+  "childrenWithProps": PropTypes.array.isRequired,
   "history": PropTypes.object.isRequired,
   "authentication": PropTypes.object.isRequired,
 };

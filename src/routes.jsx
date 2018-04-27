@@ -2,7 +2,7 @@ import React from "react";
 
 // Migration from React Router 3 to 4
 // See: https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import App from "./components/App";
 import DayPlannerPage from "./containers/DayPlanner";
@@ -24,12 +24,10 @@ const Routes = () =>
     <PersistGate persistor={persistor}>
       <Router>
         <Layout>
-          <Switch>
-            <Route exact path="/" component={App} />
-            <Route path="/dayplanner" component={DayPlannerPage} />
-            <Route path="/login" component={LoginPage}/>
-            <Route component={NotFound} />
-          </Switch>
+          <Route exact path="/" componentToRender={App} />
+          <Route path="/dayplanner" componentToRender={DayPlannerPage} />
+          <Route path="/login" componentToRender={LoginPage}/>
+          <Route component={NotFound} />
         </Layout>
       </Router>
     </PersistGate>
