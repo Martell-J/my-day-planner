@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Login from "../../components/Authentication/Login";
-// import PropTypes from "prop-types";
+import LoginForm from "../../components/Authentication/LoginForm";
+import PropTypes from "prop-types";
 const { loginUser } = require("../../store/actions/authentication.js");
 
 class LoginPage extends Component {
@@ -12,20 +12,24 @@ class LoginPage extends Component {
 
     super(props);
 
-    console.log(props)
-
     this.state = {
       "authentication": this.props.authentication || {},
-      "history": this.props.history || {},
+      "data": {
+        "username": null,
+        "password": null,
+        "passwordConfirmation": null,
+      },
     };
 
   }
 
   componentWillMount() {
 
-  }
+    if (this.state.authentication.isAuthenticated) {
 
-  componentWillReceiveProps(nextProps) {
+      this.props.history.push("/");
+
+    }
 
   }
 
@@ -49,7 +53,7 @@ class LoginPage extends Component {
   render() {
 
     return (
-      <Login
+      <LoginForm
         {...this.state}
         onSubmitLogin={this.onSubmitLogin.bind(this)}
       />
@@ -58,5 +62,10 @@ class LoginPage extends Component {
   }
 
 }
+
+LoginPage.propTypes = {
+  "authentication": PropTypes.object.isRequired,
+  "history": PropTypes.object.isRequired,
+};
 
 export default LoginPage;

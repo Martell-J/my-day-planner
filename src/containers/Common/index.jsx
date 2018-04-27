@@ -17,7 +17,6 @@ class LayoutPage extends React.Component {
 
     this.state = {
       "authentication": props.authentication || {},
-      "children": props.children || {},
       "history": props.history || {},
       "location": props.location || {},
       "match": props.match || {},
