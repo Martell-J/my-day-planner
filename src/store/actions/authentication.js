@@ -86,8 +86,7 @@ export let loginUser = (username, password) => {
 
       }).catch((err) => {
 
-        let error = new Error(err.response.data.message);
-        error.name = err.response.data.code;
+        let error = err.response.data;
 
         return reject(dispatch(loginError(error)));
 
@@ -145,14 +144,13 @@ export let refreshUser = (originalUser) => {
         "method": "get",
       }).then((response) => {
 
-        const user = Object.assign(originalUser, response.data.result);
+        const user = { ...originalUser, ...response.data.result };
 
         return resolve(dispatch(receiveRefresh(user, "Successful Refresh!")));
 
       }).catch((err) => {
 
-        let error = new Error(err.response.data.message);
-        error.name = err.response.data.code;
+        let error = err.response.data;
 
         return reject(dispatch(refreshError(error)));
 

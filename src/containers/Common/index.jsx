@@ -21,6 +21,7 @@ class LayoutPage extends React.Component {
       "location": props.location || {},
       "match": props.match || {},
       "rehydrate": props.rehydrate || {},
+      "dispatch": props.dispatch || (() => false),
     };
 
   }
@@ -39,7 +40,7 @@ class LayoutPage extends React.Component {
     if (this.state.rehydrate.isRehydrated) {
 
       // Whitelist items to pass down to the child
-      const includeFromState = [ "authentication", "history", "location", "match", "rehydrate" ];
+      const includeFromState = [ "authentication", "history", "location", "match", "rehydrate", "dispatch" ];
 
       const stateKeys = Object.keys(this.state);
 
@@ -92,6 +93,7 @@ LayoutPage.propTypes = {
   "location": PropTypes.object.isRequired,
   "match": PropTypes.object.isRequired,
   "rehydrate": PropTypes.object.isRequired,
+  "dispatch": PropTypes.func.isRequired,
 };
 
 export default withRouter(connect(mapStateToProps)(LayoutPage));

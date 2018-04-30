@@ -14,10 +14,11 @@ class LoginPage extends Component {
 
     this.state = {
       "authentication": this.props.authentication || {},
+      "isSubmitted": false,
       "data": {
-        "username": null,
-        "password": null,
-        "passwordConfirmation": null,
+        "username": "",
+        "password": "",
+        "passwordConfirmation": "",
       },
     };
 
@@ -33,20 +34,44 @@ class LoginPage extends Component {
 
   }
 
-  onSubmitLogin(username, password) {
+  onInputChange(event) {
 
-    // Submit a request using axios to the API (dispatch login request)
-    loginUser(username, password)
-      .then((result) => {
+    const { name, value } = event.target;
 
-        console.log(result);
+    const { data } = this.state;
 
-      })
-      .catch((err) => {
+    data[name] = value;
 
-        console.log(err);
+    this.setState({ data, "isSubmitted": false });
 
-      });
+  }
+
+  onSubmit(event) {
+
+    event.preventDefault();
+
+    this.setState({ "isSubmitted": true }, () => {
+
+      const { username, password, passwordConfirmation } = this.state.data;
+
+      if (username && password && password === passwordConfirmation) {
+
+        // Submit a request using axios to the API (dispatch login request)
+        this.props.dispatch(loginUser(username, password))
+          .then((result) => {
+
+            console.log(result);
+
+          })
+          .catch((err) => {
+
+            console.log(err);
+
+          });
+
+      }
+
+    });
 
   }
 
@@ -54,8 +79,11 @@ class LoginPage extends Component {
 
     return (
       <LoginForm
-        {...this.state}
-        onSubmitLogin={this.onSubmitLogin.bind(this)}
+        user={this.state.data}
+        authentication={this.state.authentication}
+        onSubmit={this.onSubmit.bind(this)}
+        isSubmitted={this.state.isSubmitted}
+        onInputChange={this.onInputChange.bind(this)}
       />
     );
 

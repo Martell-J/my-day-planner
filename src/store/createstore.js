@@ -23,7 +23,7 @@ export default (initialState) => {
 
   const persistor = persistStore(store, null, () => {
 
-    Axios.defaults.headers.common.Auth = store.getState().authentication.token;
+    Axios.defaults.headers.common.authentication = store.getState().authentication.token;
 
     if (store.getState().authentication.token) {
 
