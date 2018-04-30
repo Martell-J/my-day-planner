@@ -8,6 +8,9 @@ const app = express();
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
+// We could conditionally catch errors if we're in dev vs. prod, but in this
+// case it doesn't really matter. We should be smart enough to handle errors
+// with expected cases
 process.on("unhandledRejection", (err) => {
 
   // Actually throw stack-traces for unhandled rejections (mainly for promise debugging)
@@ -31,8 +34,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
 
 });
-
-
 
 const PORT = process.env.PORT || 3000;
 
