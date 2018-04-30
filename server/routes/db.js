@@ -1,11 +1,15 @@
 const express = require("express");
 const router = new express.Router();
-const API = require("../helpers/api");
+const API = require("../helpers/api.js");
 
-module.exports = () => {
+const serverRequestMethods = [ "get", "post", "put", "delete" ];
 
-  router.get("*", (req, res) => API.get(req, res));
+// Generify each server-handled request method and inject the pertinent type
+// into express Router
+serverRequestMethods.forEach((srm) => {
 
-  return router;
+  router[srm]("*", (req, res) => API[srm](req, res));
 
-};
+});
+
+module.exports = router;

@@ -19,7 +19,7 @@ process.on("unhandledRejection", (err) => {
 });
 
 // Inject the db routes via express router, pass app to it (sequelize is tied in)
-const dbRoutes = require("./routes/db.js")();
+const dbRoutes = require("./routes/db.js");
 app.use("/api", dbRoutes);
 
 // Setup logger
