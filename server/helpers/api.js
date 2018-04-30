@@ -97,7 +97,7 @@ const requestMethods = {};
 
 // Generify the requests. If we need to pass conditional data based on the type
 // outside of data we can reasonably pull from the req object (E.G: IP Logging),
-// expand this, but for brevit we'll leave it as it is.
+// expand this, but for brevity we'll leave it as it is.
 serverRequestMethods.forEach((srm) => {
 
   requestMethods[srm] = (req, res) => sendRequest(req, res, srm);
