@@ -94,6 +94,7 @@ class LoginPage extends Component {
 LoginPage.propTypes = {
   "authentication": PropTypes.object.isRequired,
   "history": PropTypes.object.isRequired,
+  "dispatch": PropTypes.func.isRequired,
 };
 
 export default LoginPage;

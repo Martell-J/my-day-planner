@@ -81,13 +81,24 @@ const sendRequest = (req, res, method) => {
   // Return the request to the external API,
   // if an error is thrown, it should always be typed as a ServerError, so call .toJSON()
   // so Axios will passback the request to the client-side call as a JSON-typed error.
-  return Axios({
+  Axios({
     "url": api_url + req.url,
     method,
     headers,
     "data": req.hasOwnProperty("body") ? req.body : null,
   })
-    .catch((err) => res.status(400).json(err.toJson()));
+    .then((externalResponse) => res.status(externalResponse.status).json(externalResponse.data))
+    .catch((err) => {
+
+      if (err && err.toJson) {
+
+        return res.status(400).json(err.toJson());
+
+      }
+
+      return res.status(400).json(new ServerError({}).toJson());
+
+    });
 
 };
 

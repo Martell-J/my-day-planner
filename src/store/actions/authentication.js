@@ -56,7 +56,7 @@ export let loginUser = (username, password) => {
         },
       }).then((response) => {
 
-        let responseData = response.data.result;
+        let responseData = response.data;
 
         const token = responseData.token;
 
@@ -68,6 +68,10 @@ export let loginUser = (username, password) => {
 
       }).then(([ authUser, token ]) => {
 
+        console.log("Garner data next...")
+
+        // Not done yet... (garner user data)
+        /*
         Axios("/api/user", {
           "method": "get",
         }).then((response) => {
@@ -83,6 +87,7 @@ export let loginUser = (username, password) => {
           return reject(err);
 
         });
+        */
 
       }).catch((err) => {
 
