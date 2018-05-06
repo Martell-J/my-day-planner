@@ -8,7 +8,7 @@ import Axios from "axios";
 
 import reducers from "./reducers";
 
-import { logoutUser, refreshUser } from "./actions/authentication";
+import { logoutUser } from "./actions/authentication";
 import { startRehydrate, finishRehydrate } from "./actions/rehydrate";
 
 export default (initialState) => {
@@ -27,16 +27,8 @@ export default (initialState) => {
 
     if (store.getState().authentication.token) {
 
-      Axios("/token/verify", {
+      Axios("/api/token/verify", {
         "method": "get",
-      }).then(() => {
-
-        if (new Date().getTime() <= store.getState().authentication.expiry + 1000 * 60 * 60 * 12) {
-
-          store.dispatch(refreshUser(store.getState().authentication.user));
-
-        }
-
       }).then(() => {
 
         store.dispatch(finishRehydrate());

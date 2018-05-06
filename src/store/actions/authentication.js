@@ -68,7 +68,7 @@ export let loginUser = (username, password) => {
 
       }).then(([ authUser, token ]) => {
 
-        Axios("/api/userbytoken", {
+        Axios("/api/token/verify", {
           "method": "get",
         }).then((response) => {
 

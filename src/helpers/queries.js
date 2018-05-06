@@ -18,15 +18,15 @@ const mapEvents = (events) => {
 // A helper for DB-Oriented queries
 export const queries = {
 
-  // Returns a list of 'events' to send to a bigcalendar component
+  // Returns a list of "events" to send to a bigcalendar component
   "getPlans": () => {
     return new Promise((resolve, reject) => {
       // Query the local /db/getplans route
-      Axios.get('/api/plans')
+      Axios.get("/api/plans")
       .then((result) =>  {
         // Iterate through the returned events and pull that data out of the response.
         // and resolve that array data
-        return resolve(mapEvents(result.data.data));
+        return resolve(mapEvents(result.data));
       })
       .catch((err) => {
         return reject(err);
@@ -38,9 +38,9 @@ export const queries = {
   // of all events added to-date
   "insertPlan": (postJSON) => {
     return new Promise((resolve, reject) => {
-      Axios.post('/api/plans', postJSON)
+      Axios.post("/api/plan", postJSON)
       .then((result) =>  {
-        resolve(mapEvents(result.data.data));
+        resolve(mapEvents(result.data));
       })
       .catch((err) => {
         return reject(err);
