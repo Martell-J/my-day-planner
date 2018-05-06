@@ -39,8 +39,14 @@ class FormDialogPage extends Component {
 
   onSubmit(submitCallback) {
 
-    submitCallback();
-    this.closeDialog(false);
+    submitCallback()
+      .then((msg) => {
+
+        this.closeDialog(false);
+        this.props.onOpenDisplayMessage(msg, "success");
+
+      })
+      .catch(this.props.onOpenDisplayMessage);
 
   }
 
@@ -51,6 +57,7 @@ class FormDialogPage extends Component {
     const actions = [
       <RaisedButton
         label="Close"
+        style={{ "marginRight": "10px" }}
         primary={true}
         key="fd-close"
         onClick={self.closeDialog.bind(this)}
@@ -68,12 +75,13 @@ class FormDialogPage extends Component {
       <div>
         <Dialog
           title={self.props.title}
+          bodyStyle={{ "textAlign": "center" }}
           actions={actions}
           modal={self.props.isModal}
           open={self.state.open}
           onRequestClose={self.toggleDialog.bind(this)}
         >
-          { React.cloneElement(self.props.subComponent, { "onSubmit": self.onSubmit.bind(this) })};
+          { React.cloneElement(self.props.subComponent, { "onSubmit": self.onSubmit.bind(this) })}
         </Dialog>
       </div>
     );
@@ -87,6 +95,7 @@ FormDialogPage.propTypes = {
   "isModal": PropTypes.bool.isRequired,
   "openOnRender": PropTypes.bool.isRequired,
   "subComponent": PropTypes.object.isRequired,
+  "onOpenDisplayMessage": PropTypes.func.isRequired,
 };
 
 export default FormDialogPage;

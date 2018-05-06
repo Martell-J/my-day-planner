@@ -7,16 +7,7 @@ import LoginPage from "../Authentication/LoginPage";
 
 class HeaderPage extends Component {
 
-  /*
-   * Class constructor.
-   */
-  constructor(props) {
-
-    super(props);
-
-  }
-
-  onOpenDisplayMessage(message, type) {
+  onOpenDisplayMessage(message, type = "danger") {
 
     this.props.onOpenDisplayMessage(message, type);
 
@@ -54,6 +45,7 @@ class HeaderPage extends Component {
           title="Login"
           isModal={false}
           openOnRender={true}
+          onOpenDisplayMessage={this.onOpenDisplayMessage.bind(this)}
           subComponent={
             <LoginPage
               authentication={self.props.authentication}
