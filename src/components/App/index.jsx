@@ -60,6 +60,18 @@ class App extends Component {
                 as well (BigCalendar, Sequelize, Axios). If any bugs are found related to package changes after example updates, feel free
                 to open an issue request on the repository containing this project.</p>
               </li>
+              <h4>A few more things...</h4>
+              <ul>
+                <li>
+                  <p>The functionality of this repo now REQUIRES running the external my-day-planner-api repository (See: <a href="https://github.com/Martell-J/my-day-planner-api">That Repository</a> ). For everything
+                    to operate smoothly, please run my-day-planner-api first, then build a production-version of this repo to allow cross-origin requests via a locally-running server. This can now be accomplished with
+                    the script &#39;yarn dev-server&#39; (or npm run dev-server if you&#39;re not using yarn.)</p>
+                </li>
+                <li>
+                  <p>Not everything in this repository is to be coded &#39;to spec&#39;, sometimes interesting ideas or features may be implmented simply for
+                  learning purposes (or fun, because I&#39;m insane and enjoy this...).</p>
+                </li>
+              </ul>
             </ul>
           </CardMedia>
         </Card>
