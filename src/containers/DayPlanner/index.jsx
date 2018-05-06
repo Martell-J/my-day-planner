@@ -40,12 +40,26 @@ class DayPlannerPage extends Component {
 
     let self = this;
 
+    if (!self.props.authentication.isAuthenticated) {
+
+      self.props.history.push("/");
+
+    }
+
     queries.getPlans()
       .then((events) => {
 
         self.setState({ events });
 
       });
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+    this.setState({
+      ...nextProps,
+    });
 
   }
 
@@ -90,6 +104,7 @@ class DayPlannerPage extends Component {
       // Insert the plan using the relevant data, and update the events to reflect
       // the insertion
       queries.insertPlan(postJSON)
+        .then(queries.getPlans)
         .then((events) => {
 
           self.setState({ events });

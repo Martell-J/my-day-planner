@@ -10,8 +10,7 @@ BigCalendar.setLocalizer(
 );
 
 // Base DayPlanner example page
-const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDetailsChange,
-  /* handleDurationMinuteChange, handleDurationHourChange, */ selectedStartDateTime,
+const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDetailsChange, selectedStartDateTime,
   selectedEndDateTime, planDetails, events, onErrorDismissal, errors }) => {
 
   return (
@@ -95,9 +94,9 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
 
             </div>
             <div className="card-media-inner-right-container">
+              {console.log(events)}
               <BigCalendar
                 // eslint-disable-next-line no-invalid-this
-                {...this.props}
                 events={events}
                 style={{ "height": "100%" }}
               />

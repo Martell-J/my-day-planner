@@ -6,11 +6,13 @@ import PropTypes from "prop-types";
 import "./style.css";
 
 const Layout = ({ history, childrenWithProps, authentication,
-  displayMessage, displayMessageType, onCloseDisplayMessage, displayMessageTimeout }) => {
+  displayMessage, displayMessageType, onCloseDisplayMessage, onOpenDisplayMessage,
+  displayMessageTimeout, onGenerateDialog, dialog, dispatch }) => {
 
   return (
     <div className="base">
-      <HeaderPage history={history} authentication={authentication} />
+      <HeaderPage history={history} authentication={authentication} dispatch={dispatch}
+        onOpenDisplayMessage={onOpenDisplayMessage} onGenerateDialog={onGenerateDialog} />
       <div className="base-outline-container">
         <div className="base-inner-container">
           <Switch>
@@ -18,6 +20,7 @@ const Layout = ({ history, childrenWithProps, authentication,
           </Switch>
         </div>
       </div>
+      {dialog ? dialog : false}
       <Snackbar
         open={displayMessage.length !== 0}
         message={displayMessage}
@@ -36,8 +39,12 @@ Layout.propTypes = {
   "authentication": PropTypes.object.isRequired,
   "displayMessage": PropTypes.string.isRequired,
   "displayMessageType": PropTypes.string.isRequired,
+  "onOpenDisplayMessage": PropTypes.func.isRequired,
   "onCloseDisplayMessage": PropTypes.func.isRequired,
   "displayMessageTimeout": PropTypes.number.isRequired,
+  "onGenerateDialog": PropTypes.func.isRequired,
+  "dispatch": PropTypes.func.isRequired,
+  "dialog": PropTypes.optionalNode,
 };
 
 

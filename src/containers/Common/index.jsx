@@ -18,12 +18,7 @@ class LayoutPage extends React.Component {
     super(props, context);
 
     this.state = {
-      "authentication": props.authentication || {},
-      "history": props.history || {},
-      "location": props.location || {},
-      "match": props.match || {},
-      "rehydrate": props.rehydrate || {},
-      "dispatch": props.dispatch || (() => false),
+      "dialog": null,
       "displayMessage": "",
       "displayMessageType": "danger",
       "displayMessageRedirect": null,
@@ -66,27 +61,37 @@ class LayoutPage extends React.Component {
 
   }
 
-  componentWillReceiveProps(nextProps) {
+  // Unmounts any existing dialogs, then mounts the one passed
+  onGenerateDialog(element) {
 
     this.setState({
-      "authentication": nextProps.authentication,
-      "rehydrate": nextProps.rehydrate,
+      "dialog": null,
+    }, () => {
+
+      this.setState({ "dialog": element });
+
     });
 
   }
 
   render() {
 
-    if (this.state.rehydrate.isRehydrated) {
+    const { isRehydrated } = this.props.rehydrate;
+
+    if (isRehydrated) {
 
       // Whitelist items to pass down to the child
-      const includeFromState = [ "authentication", "history", "location",
-        "match", "rehydrate", "dispatch",
-        "displayMessage", "displayMessageType", "displayMessageRedirect", "displayMessageTimeout" ];
+      const includeFromState = [ "displayMessage", "displayMessageType", "displayMessageRedirect", "displayMessageTimeout", "dialog" ];
+
+      const includeFromProps = [ "authentication", "history", "location", "match", "rehydrate", "dispatch" ];
 
       const stateKeys = Object.keys(this.state);
 
+      const propKeys = Object.keys(this.props);
+
       const reducedState = {};
+
+      const extraProps = {};
 
       stateKeys.forEach((key) => {
 
@@ -98,22 +103,33 @@ class LayoutPage extends React.Component {
 
       });
 
+      propKeys.forEach((key) => {
+
+        if (~includeFromProps.findIndex((i) => i === key)) {
+
+          extraProps[key] = this.props[key];
+
+        }
+
+      });
+
       // Override the render of each Route component to feature props from both
       // route as well as the reducedState determined in this component
       const childrenWithProps = React.Children.map(this.props.children, (rChild) =>
         React.cloneElement(rChild, {
           "render": (routeProps) =>
             <rChild.props.componentToRender
-              { ...{ ...reducedState, ...routeProps } }
+              { ...{ ...extraProps, ...reducedState, ...routeProps } }
               onOpenDisplayMessage={this.onOpenDisplayMessage.bind(this)}
             />,
         }));
 
       // Render once all dispatched requests complete
       return <Layout
-        { ...{ ...reducedState, childrenWithProps } }
+        { ...{ ...extraProps, ...reducedState, childrenWithProps } }
         onOpenDisplayMessage={this.onOpenDisplayMessage.bind(this)}
         onCloseDisplayMessage={this.onCloseDisplayMessage.bind(this)}
+        onGenerateDialog={this.onGenerateDialog.bind(this)}
       />;
 
     }

@@ -50,32 +50,39 @@ class LoginPage extends Component {
 
     event.preventDefault();
 
-    this.setState({ "isSubmitted": true }, () => {
+    const os = () => {
 
-      const { username, password, passwordConfirmation } = this.state.data;
+      this.setState({ "isSubmitted": true }, () => {
 
-      if (username && password && password === passwordConfirmation) {
+        const { username, password, passwordConfirmation } = this.state.data;
 
-        // Submit a request using axios to the API (dispatch login request)
-        this.props.dispatch(loginUser(username, password))
-          .then(() => {
+        if (username && password && password === passwordConfirmation) {
 
-            const redirectMethod = this.props.history.goBack;
+          // Submit a request using axios to the API (dispatch login request)
+          this.props.dispatch(loginUser(username, password))
+            .then(() => {
 
-            this.props.onOpenDisplayMessage("You have successfully logged in! You will be redirected...", "success", redirectMethod, 5000);
+              const redirectMethod = this.props.history.goBack;
 
-          })
-          .catch((err) => {
+              this.props.onOpenDisplayMessage("You have successfully logged in! You will be redirected...", "success", redirectMethod, 5000);
 
-            let errorMessage = err.message ? err.message : err.error ? err.error.message : "";
+            })
+            .catch((err) => {
 
-            this.props.onOpenDisplayMessage(errorMessage);
+              let errorMessage = err.message ? err.message : err.error ? err.error.message : "";
 
-          });
+              this.props.onOpenDisplayMessage(errorMessage);
 
-      }
+            });
 
-    });
+        }
+
+      });
+
+    };
+
+    this.props.onSubmit(os) || os();
+
 
   }
 
@@ -99,6 +106,7 @@ LoginPage.propTypes = {
   "authentication": PropTypes.object.isRequired,
   "history": PropTypes.object.isRequired,
   "dispatch": PropTypes.func.isRequired,
+  "onSubmit": PropTypes.optionalFunc,
   "onOpenDisplayMessage": PropTypes.func.isRequired,
 };
 
