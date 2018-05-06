@@ -13,6 +13,7 @@ const Login = ({ onSubmit, user, onInputChange, isSubmitted }) => {
         name="username"
         errorText={!username && isSubmitted ? "This field is required." : false}
         floatingLabelText="Username"
+        fullWidth={true}
         onChange={onInputChange}
         value={username}
       /><br />
@@ -22,6 +23,7 @@ const Login = ({ onSubmit, user, onInputChange, isSubmitted }) => {
         errorText={!password && isSubmitted ? "This field is required." : false}
         type="password"
         floatingLabelText="Password"
+        fullWidth={true}
         onChange={onInputChange}
         value={password}
       /><br />
@@ -31,10 +33,11 @@ const Login = ({ onSubmit, user, onInputChange, isSubmitted }) => {
         errorText={!passwordConfirmation && isSubmitted ? "This field is required." : !(passwordConfirmation === password) && isSubmitted ? "Password must match" : false}
         type="password"
         floatingLabelText="Password Confirmation"
+        fullWidth={true}
         onChange={onInputChange}
         value={passwordConfirmation}
       /><br />
-      <RaisedButton type="submit" color="secondary" >Submit</RaisedButton>
+      <RaisedButton type="submit" color="secondary" fullWidth={true} style={{ "marginTop": "10px" }} >Submit</RaisedButton>
     </form>
   );
 

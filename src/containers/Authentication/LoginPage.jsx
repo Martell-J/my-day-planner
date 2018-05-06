@@ -50,36 +50,35 @@ class LoginPage extends Component {
 
     event.preventDefault();
 
-    const os = () => {
+    const os = () =>
+      new Promise((resolve, reject) => {
 
-      this.setState({ "isSubmitted": true }, () => {
+        this.setState({ "isSubmitted": true }, () => {
 
-        const { username, password, passwordConfirmation } = this.state.data;
+          const { username, password, passwordConfirmation } = this.state.data;
 
-        if (username && password && password === passwordConfirmation) {
+          if (username && password && password === passwordConfirmation) {
 
-          // Submit a request using axios to the API (dispatch login request)
-          this.props.dispatch(loginUser(username, password))
-            .then(() => {
+            // Submit a request using axios to the API (dispatch login request)
+            this.props.dispatch(loginUser(username, password))
+              .then(() => {
 
-              const redirectMethod = this.props.history.goBack;
+                return resolve("You have successfully logged in!");
 
-              this.props.onOpenDisplayMessage("You have successfully logged in! You will be redirected...", "success", redirectMethod, 5000);
+              })
+              .catch((err) => {
 
-            })
-            .catch((err) => {
+                let errorMessage = err.message ? err.message : err.error ? err.error.message : "";
 
-              let errorMessage = err.message ? err.message : err.error ? err.error.message : "";
+                return reject(errorMessage);
 
-              this.props.onOpenDisplayMessage(errorMessage);
+              });
 
-            });
+          }
 
-        }
+        });
 
       });
-
-    };
 
     this.props.onSubmit(os) || os();
 
