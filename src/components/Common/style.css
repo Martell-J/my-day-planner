@@ -16,3 +16,26 @@
   margin-top: 30px;
   display: block;
 }
+
+.notify.show{
+
+  visibility: visible;
+  -webkit-transition-timing-function: ease !important;
+  transition: 300ms;
+}
+.notify.danger div:first-child {
+    background-color: #f44336 !important;
+    color: white !important;
+}
+.notify.success div:first-child {
+    background-color: #5fb962 !important;
+    color: white !important;
+}
+.notify.warning div:first-child {
+    background-color: #ffd633 !important;
+    color: white !important;
+}
+.notify.info div:first-child {
+    background-color: #6eb9f7 !important;
+    color: white !important;
+}

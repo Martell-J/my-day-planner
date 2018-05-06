@@ -72,9 +72,9 @@ const sendRequest = (req, res, method) => {
     api_key,
   };
 
-  if (req.headers.hasOwnProperty("token")) {
+  if (req.headers.hasOwnProperty("authentication")) {
 
-    headers.token = req.headers.token;
+    headers.authentication = req.headers.authentication;
 
   }
 

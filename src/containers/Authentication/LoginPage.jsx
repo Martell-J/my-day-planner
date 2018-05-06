@@ -58,14 +58,18 @@ class LoginPage extends Component {
 
         // Submit a request using axios to the API (dispatch login request)
         this.props.dispatch(loginUser(username, password))
-          .then((result) => {
+          .then(() => {
 
-            console.log(result);
+            const redirectMethod = this.props.history.goBack;
+
+            this.props.onOpenDisplayMessage("You have successfully logged in! You will be redirected...", "success", redirectMethod, 5000);
 
           })
           .catch((err) => {
 
-            console.log(err);
+            let errorMessage = err.message ? err.message : err.error ? err.error.message : "";
+
+            this.props.onOpenDisplayMessage(errorMessage);
 
           });
 
@@ -95,6 +99,7 @@ LoginPage.propTypes = {
   "authentication": PropTypes.object.isRequired,
   "history": PropTypes.object.isRequired,
   "dispatch": PropTypes.func.isRequired,
+  "onOpenDisplayMessage": PropTypes.func.isRequired,
 };
 
 export default LoginPage;

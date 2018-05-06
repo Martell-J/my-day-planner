@@ -68,26 +68,15 @@ export let loginUser = (username, password) => {
 
       }).then(([ authUser, token ]) => {
 
-        console.log("Garner data next...")
-
-        // Not done yet... (garner user data)
-        /*
-        Axios("/api/user", {
+        Axios("/api/userbytoken", {
           "method": "get",
         }).then((response) => {
 
-          const user = { ...response.data.result, ...authUser };
+          const { user, exp } = { ...response.data, ...authUser };
 
-          const { expiry } = user;
+          return resolve(dispatch(receiveLogin(user, token, new Date(exp), "Successful Login!")));
 
-          return resolve(dispatch(receiveLogin(user, token, new Date(expiry), "Successful Login!")));
-
-        }).catch((err) => {
-
-          return reject(err);
-
-        });
-        */
+        }).catch(reject);
 
       }).catch((err) => {
 

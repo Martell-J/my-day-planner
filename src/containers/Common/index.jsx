@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 
 import Layout from "../../components/Common";
 
+const DEFAULT_DISPLAY_MESSAGE_TIMEOUT = 3000;
+
 class LayoutPage extends React.Component {
 
   /*
@@ -22,7 +24,45 @@ class LayoutPage extends React.Component {
       "match": props.match || {},
       "rehydrate": props.rehydrate || {},
       "dispatch": props.dispatch || (() => false),
+      "displayMessage": "",
+      "displayMessageType": "danger",
+      "displayMessageRedirect": null,
+      "displayMessageTimeout": DEFAULT_DISPLAY_MESSAGE_TIMEOUT,
     };
+
+  }
+
+  onOpenDisplayMessage(message, type = "danger", redirectMethod = null, hideAfterMS = DEFAULT_DISPLAY_MESSAGE_TIMEOUT) {
+
+    this.setState({
+      "displayMessage": message,
+      "displayMessageType": type,
+      "displayMessageRedirect": redirectMethod,
+      "displayMessageTimeout": hideAfterMS,
+    });
+
+  }
+
+  onCloseDisplayMessage() {
+
+    const { displayMessageRedirect } = this.state;
+
+    if (displayMessageRedirect) {
+
+      this.setState({
+        "displayMessage": "",
+        "displayMessageRedirect": null,
+        "displayMessageTimeout": DEFAULT_DISPLAY_MESSAGE_TIMEOUT },
+      displayMessageRedirect);
+
+    } else {
+
+      this.setState({
+        "displayMessage": "",
+        "displayMessageTimeout": DEFAULT_DISPLAY_MESSAGE_TIMEOUT,
+      });
+
+    }
 
   }
 
@@ -40,7 +80,9 @@ class LayoutPage extends React.Component {
     if (this.state.rehydrate.isRehydrated) {
 
       // Whitelist items to pass down to the child
-      const includeFromState = [ "authentication", "history", "location", "match", "rehydrate", "dispatch" ];
+      const includeFromState = [ "authentication", "history", "location",
+        "match", "rehydrate", "dispatch",
+        "displayMessage", "displayMessageType", "displayMessageRedirect", "displayMessageTimeout" ];
 
       const stateKeys = Object.keys(this.state);
 
@@ -61,11 +103,18 @@ class LayoutPage extends React.Component {
       const childrenWithProps = React.Children.map(this.props.children, (rChild) =>
         React.cloneElement(rChild, {
           "render": (routeProps) =>
-            <rChild.props.componentToRender { ...{ ...reducedState, ...routeProps } }/>,
+            <rChild.props.componentToRender
+              { ...{ ...reducedState, ...routeProps } }
+              onOpenDisplayMessage={this.onOpenDisplayMessage.bind(this)}
+            />,
         }));
 
       // Render once all dispatched requests complete
-      return <Layout { ...{ ...reducedState, childrenWithProps } } />;
+      return <Layout
+        { ...{ ...reducedState, childrenWithProps } }
+        onOpenDisplayMessage={this.onOpenDisplayMessage.bind(this)}
+        onCloseDisplayMessage={this.onCloseDisplayMessage.bind(this)}
+      />;
 
     }
 
