@@ -94,7 +94,6 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
 
             </div>
             <div className="card-media-inner-right-container">
-              {console.log(events)}
               <BigCalendar
                 // eslint-disable-next-line no-invalid-this
                 events={events}
