@@ -42,7 +42,7 @@ class FormDialogPage extends Component {
     submitCallback()
       .then((msg) => {
 
-        this.closeDialog(false);
+        this.closeDialog();
         this.props.onOpenDisplayMessage(msg, "success");
 
       })
@@ -61,13 +61,6 @@ class FormDialogPage extends Component {
         primary={true}
         key="fd-close"
         onClick={self.closeDialog.bind(this)}
-      />,
-      <RaisedButton
-        label="Submit"
-        primary={true}
-        key="fd-submit"
-        keyboardFocused={true}
-        onClick={self.onSubmit.bind(this)}
       />,
     ];
 

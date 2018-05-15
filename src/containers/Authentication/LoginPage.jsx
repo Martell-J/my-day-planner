@@ -45,7 +45,13 @@ class LoginPage extends Component {
 
   }
 
-  onSubmit(event) {
+  onSubmit(cb) {
+
+    this.props.onSubmit(cb);
+
+  }
+
+  onSubmitLogin(event) {
 
     event.preventDefault();
 
@@ -79,8 +85,7 @@ class LoginPage extends Component {
 
       });
 
-    this.props.onSubmit(os) || os();
-
+    this.onSubmit(os) || os();
 
   }
 
@@ -90,7 +95,7 @@ class LoginPage extends Component {
       <LoginForm
         user={this.state.data}
         authentication={this.state.authentication}
-        onSubmit={this.onSubmit.bind(this)}
+        onSubmit={this.onSubmitLogin.bind(this)}
         isSubmitted={this.state.isSubmitted}
         onInputChange={this.onInputChange.bind(this)}
       />
