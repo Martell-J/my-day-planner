@@ -18,7 +18,7 @@ class LayoutPage extends React.Component {
     super(props, context);
 
     this.state = {
-      "dialog": null,
+      "dialog": <div/>,
       "displayMessage": "",
       "displayMessageType": "danger",
       "displayMessageRedirect": null,

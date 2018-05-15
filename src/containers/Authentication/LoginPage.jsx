@@ -45,12 +45,6 @@ class LoginPage extends Component {
 
   }
 
-  onSubmit(cb) {
-
-    this.props.onSubmit(cb);
-
-  }
-
   onSubmitLogin(event) {
 
     event.preventDefault();
@@ -85,7 +79,15 @@ class LoginPage extends Component {
 
       });
 
-    this.onSubmit(os) || os();
+    if (this.props.hasOwnProperty("onSubmit")) {
+
+      this.props.onSubmit(os);
+
+    } else {
+
+      os;
+
+    }
 
   }
 
@@ -109,7 +111,7 @@ LoginPage.propTypes = {
   "authentication": PropTypes.object.isRequired,
   "history": PropTypes.object.isRequired,
   "dispatch": PropTypes.func.isRequired,
-  "onSubmit": PropTypes.optionalFunc,
+  "onSubmit": PropTypes.func,
   "onOpenDisplayMessage": PropTypes.func.isRequired,
 };
 

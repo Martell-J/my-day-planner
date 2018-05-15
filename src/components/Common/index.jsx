@@ -44,7 +44,7 @@ Layout.propTypes = {
   "displayMessageTimeout": PropTypes.number.isRequired,
   "onGenerateDialog": PropTypes.func.isRequired,
   "dispatch": PropTypes.func.isRequired,
-  "dialog": PropTypes.optionalNode,
+  "dialog": PropTypes.object,
 };
 
 

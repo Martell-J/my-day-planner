@@ -3,16 +3,14 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-import Routes from "./routes";
-import injectTapEventPlugin from "react-tap-event-plugin";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import App from "./App";
 
-import "./index.css";
+// For when we expand to a universal app (With HMR)
+import createStore from "./store/createstore";
 
-injectTapEventPlugin();
+const { store, persistor } = createStore();
+
 ReactDOM.render(
-  <MuiThemeProvider>
-    <Routes/>
-  </MuiThemeProvider>,
+  <App store={store} persistor={persistor} />,
   document.getElementById("root")
 );

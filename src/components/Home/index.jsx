@@ -5,7 +5,7 @@ let navigationExample = "/media/navexample.webm";
 let dayPlannerExample = "/media/rmrecord.webm";
 
 // Application root (Home page)
-class App extends Component {
+class Home extends Component {
 
   render() {
 
@@ -82,4 +82,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default Home;

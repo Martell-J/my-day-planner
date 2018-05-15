@@ -84,7 +84,7 @@ class FormDialogPage extends Component {
 }
 
 FormDialogPage.propTypes = {
-  "title": PropTypes.object.isRequired,
+  "title": PropTypes.string.isRequired,
   "isModal": PropTypes.bool.isRequired,
   "openOnRender": PropTypes.bool.isRequired,
   "subComponent": PropTypes.object.isRequired,
