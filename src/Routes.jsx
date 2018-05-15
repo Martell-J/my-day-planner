@@ -14,6 +14,7 @@ const Routes = () =>
       <Route exact path="/" componentToRender={Home} />
       <Route path="/dayplanner" componentToRender={DayPlannerPage} />
       <Route path="/login" componentToRender={LoginPage}/>
+      <Route component={NotFound}/>
     </Layout>
   </Router>;
 
