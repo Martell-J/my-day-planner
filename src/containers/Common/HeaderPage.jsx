@@ -7,9 +7,9 @@ import LoginPage from "../Authentication/LoginPage";
 
 class HeaderPage extends Component {
 
-  onOpenDisplayMessage(message, type = "danger") {
+  onOpenDisplayMessage(message, type = "danger", cb = null) {
 
-    this.props.onOpenDisplayMessage(message, type);
+    this.props.onOpenDisplayMessage(message, type, cb);
 
   }
 
@@ -24,7 +24,11 @@ class HeaderPage extends Component {
     const self = this;
     self.props.dispatch(logoutUser());
 
-    this.onOpenDisplayMessage("You have successfully logged out!", "success");
+    self.onOpenDisplayMessage("You have successfully logged out!", "success", () => {
+
+      self.props.history.push("/");
+
+    });
 
   }
 

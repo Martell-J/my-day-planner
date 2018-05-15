@@ -18,7 +18,6 @@ class LoginPage extends Component {
       "data": {
         "username": "",
         "password": "",
-        "passwordConfirmation": "",
       },
     };
 
@@ -55,9 +54,9 @@ class LoginPage extends Component {
 
         this.setState({ "isSubmitted": true }, () => {
 
-          const { username, password, passwordConfirmation } = this.state.data;
+          const { username, password } = this.state.data;
 
-          if (username && password && password === passwordConfirmation) {
+          if (username && password) {
 
             // Submit a request using axios to the API (dispatch login request)
             this.props.dispatch(loginUser(username, password))

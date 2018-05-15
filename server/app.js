@@ -29,17 +29,9 @@ app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:htt
 app.use(express.static(path.resolve(__dirname, "..", "build")));
 
 // Render base index.html page in every route
-app.get((req, res, next) => {
+app.get("*", (req, res) => {
 
-  if (!req.originalUrl.includes("/api")) {
-
-    res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
-
-  } else {
-
-    return next();
-
-  }
+  res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
 
 });
 

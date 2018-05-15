@@ -27,12 +27,12 @@ class LayoutPage extends React.Component {
 
   }
 
-  onOpenDisplayMessage(message, type = "danger", redirectMethod = null, hideAfterMS = DEFAULT_DISPLAY_MESSAGE_TIMEOUT) {
+  onOpenDisplayMessage(message, type = "danger", redirectCallback = null, hideAfterMS = DEFAULT_DISPLAY_MESSAGE_TIMEOUT) {
 
     this.setState({
       "displayMessage": message,
       "displayMessageType": type,
-      "displayMessageRedirect": redirectMethod,
+      "displayMessageRedirect": redirectCallback,
       "displayMessageTimeout": hideAfterMS,
     });
 

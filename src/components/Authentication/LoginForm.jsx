@@ -4,7 +4,7 @@ import { TextField, RaisedButton } from "material-ui";
 
 const Login = ({ onSubmit, user, onInputChange, isSubmitted }) => {
 
-  const { username, password, passwordConfirmation } = user;
+  const { username, password } = user;
 
   return (
     <form onSubmit={onSubmit}>
@@ -26,16 +26,6 @@ const Login = ({ onSubmit, user, onInputChange, isSubmitted }) => {
         fullWidth={true}
         onChange={onInputChange}
         value={password}
-      /><br />
-      <TextField
-        hintText="Password Confirmation"
-        name="passwordConfirmation"
-        errorText={!passwordConfirmation && isSubmitted ? "This field is required." : !(passwordConfirmation === password) && isSubmitted ? "Password must match" : false}
-        type="password"
-        floatingLabelText="Password Confirmation"
-        fullWidth={true}
-        onChange={onInputChange}
-        value={passwordConfirmation}
       /><br />
       <RaisedButton type="submit" color="secondary" fullWidth={true} style={{ "marginTop": "10px" }} >Submit</RaisedButton>
     </form>
