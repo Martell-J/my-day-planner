@@ -4,9 +4,9 @@
   "main": "./server/app.js",
   "scripts": {
     "start": "react-scripts start",
-    "server": "node server",
+    "server": "cross-env NODE_ENV=production node server",
     "build": "react-scripts build",
-    "dev-server": "react-scripts build && node server",
+    "dev-server": "react-scripts build && concurrently --kill-others-on-fail \"cross-env NODE_ENV=development node server\" \"react-scripts start\"",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
@@ -14,9 +14,12 @@
     "node": ">=8.9.1",
     "yarn": ">=1.3.2"
   },
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "^1.17.2",
+    "concurrently": "^3.5.1",
+    "cross-env": "^5.1.5",
     "eslint-plugin-react": "^7.6.1",
     "express": "^4.15.3",
     "material-ui": "^0.20.0",
