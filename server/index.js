@@ -16,8 +16,6 @@ const { NODE_ENV } = env;
 
 const PORT = NODE_ENV === "production" ? PRODUCTION_PORT : DEVELOPMENT_PORT;
 
-console.log(NODE_ENV)
-
 app.use(bodyParser.json());
 
 // We could conditionally catch errors if we're in dev vs. prod, but in this

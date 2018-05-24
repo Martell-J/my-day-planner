@@ -29,7 +29,7 @@ class Home extends Component {
             <p>The video below shows operation of the app&#39;s navigation feature</p>
             <div className="video-container">
 
-              <video width="100%" height="100%" autoPlay={true} controls={true} loop={true}>
+              <video width="100%" height="100%" controls={true} loop={true}>
                 <source type="video/webm" src={navigationExample}/>
               </video>
             </div>
@@ -37,7 +37,7 @@ class Home extends Component {
             <p>The video below demonstrates usage of the Day Planner</p>
             <div className="video-container">
 
-              <video width="100%" height="100%" autoPlay={true} controls={true} loop={true}>
+              <video width="100%" height="100%" controls={true} loop={true}>
                 <source type="video/webm" src={dayPlannerExample}/>
               </video>
             </div>
