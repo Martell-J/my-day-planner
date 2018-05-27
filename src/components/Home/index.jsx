@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
-import { Card, CardHeader, CardMedia } from "material-ui";
+import { Card, CardHeader, CardMedia } from "@material-ui/core";
 let navigationExample = "/media/navexample.webm";
 let dayPlannerExample = "/media/rmrecord.webm";
 
@@ -55,7 +55,7 @@ class Home extends Component {
                 of other package implementations with react. When this occurs, the repository handling this data may purged.</p>
               </li>
               <li>
-                <p>All styled-components (Header, Cards, Buttons etc.) are generated through the implementation of Material-UI (See: <a href="https://github.com/callemall/material-ui">Their Repository</a> ). This example
+                <p>All styled-components (Header, Cards, Buttons etc.) are generated through the implementation of @material-ui/core (See: <a href="https://github.com/callemall/@material-ui/core">Their Repository</a> ). This example
                 heavily relies on the consistency in functionality of these components (Date Pickers, Text Entry Fields), and related packages
                 as well (BigCalendar, Sequelize, Axios). If any bugs are found related to package changes after example updates, feel free
                 to open an issue request on the repository containing this project.</p>

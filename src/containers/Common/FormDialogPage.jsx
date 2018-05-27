@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Dialog, RaisedButton } from "material-ui";
+import { Dialog, Button } from "@material-ui/core";
 
 class FormDialogPage extends Component {
 
@@ -55,8 +55,9 @@ class FormDialogPage extends Component {
     const self = this;
 
     const actions = [
-      <RaisedButton
+      <Button
         label="Close"
+        variant="raised"
         style={{ "marginRight": "10px" }}
         primary={true}
         key="fd-close"

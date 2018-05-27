@@ -1,7 +1,7 @@
 import React from "react";
 import HeaderPage from "../../containers/Common/HeaderPage.jsx";
 import { Switch } from "react-router-dom";
-import { Snackbar } from "material-ui";
+import { Snackbar } from "@material-ui/core";
 import PropTypes from "prop-types";
 import "./style.css";
 

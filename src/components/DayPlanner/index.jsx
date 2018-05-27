@@ -1,5 +1,6 @@
 import React from "react";
-import { RaisedButton, DatePicker, TimePicker, TextField, Paper, Card, CardHeader, CardMedia, Snackbar } from "material-ui";
+import { Button, TextField, Paper, Card, CardHeader, CardMedia, Snackbar, Grid } from "@material-ui/core";
+import { DatePicker, TimePicker } from "material-ui-pickers";
 import PropTypes from "prop-types";
 import BigCalendar from "react-big-calendar";
 import moment from "moment";
@@ -22,8 +23,8 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
           className="card-header"
         />
         <CardMedia>
-          <div className="card-media-outer-container">
-            <div className="card-media-inner-left-container">
+          <Grid container >
+            <Grid xs={6}>
               <div className="day-picker-container">
                 <div className="day-picker paper-left">
                   <Paper zDepth={1}>
@@ -86,21 +87,21 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
                   value={planDetails}/>
                 <br/>
                 <br/>
-                <RaisedButton
+                <Button
                   label="Add a Plan"
+                  variant="raised"
                   onTouchTap={addPlan} />
 
               </div>
 
-            </div>
-            <div className="card-media-inner-right-container">
+            </Grid>
+            <Grid xs={6}>
               <BigCalendar
-                // eslint-disable-next-line no-invalid-this
                 events={events}
                 style={{ "height": "100%" }}
               />
-            </div>
-          </div>
+            </Grid>
+          </Grid>
         </CardMedia>
       </Card>
 

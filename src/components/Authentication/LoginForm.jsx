@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { TextField, RaisedButton } from "material-ui";
+import { TextField, Button } from "@material-ui/core";
 
 const Login = ({ onSubmit, user, onInputChange, isSubmitted }) => {
 
@@ -27,7 +27,7 @@ const Login = ({ onSubmit, user, onInputChange, isSubmitted }) => {
         onChange={onInputChange}
         value={password}
       /><br />
-      <RaisedButton type="submit" color="secondary" fullWidth={true} style={{ "marginTop": "10px" }} >Submit</RaisedButton>
+    <Button variant="raised" type="submit" color="secondary" fullWidth={true} style={{ "marginTop": "10px" }} >Submit</Button>
     </form>
   );
 
