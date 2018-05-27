@@ -1,17 +1,13 @@
-.video-container{
-  height: 400px;
-  width: 800px;
-  display: inline-block;
-  padding-top: -40px;
+video{
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+  padding: 5px;
 }
 
-video{
-  display: inline-block;
-}
 /* All instances of '!important' are preserved to overwrite Material-UI's default styling*/
 .card-outline{
   display: inline-block;
-  width:80% !important;
   margin-bottom: 30px;
 }
 
