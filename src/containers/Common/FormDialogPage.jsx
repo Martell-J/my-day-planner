@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Dialog, Button } from "@material-ui/core";
+import { Dialog, DialogActions, DialogTitle, DialogContent, Button } from "@material-ui/core";
 
 class FormDialogPage extends Component {
 
@@ -19,8 +19,10 @@ class FormDialogPage extends Component {
 
   toggleDialog(val = null) {
 
+    const valProvided = val !== null && typeof val === "boolean";
+
     this.setState({
-      "open": val !== null ? val : !this.state.open,
+      "open": valProvided ? val : !this.state.open,
     });
 
   }
@@ -56,26 +58,27 @@ class FormDialogPage extends Component {
 
     const actions = [
       <Button
-        label="Close"
         variant="raised"
         style={{ "marginRight": "10px" }}
-        primary={true}
+        color="primary"
         key="fd-close"
         onClick={self.closeDialog.bind(this)}
-      />,
+      >Close</Button>,
     ];
 
     return (
       <div>
         <Dialog
-          title={self.props.title}
-          bodyStyle={{ "textAlign": "center" }}
-          actions={actions}
-          modal={self.props.isModal}
           open={self.state.open}
-          onRequestClose={self.toggleDialog.bind(this)}
+          onClose={self.toggleDialog.bind(this)}
         >
-          { React.cloneElement(self.props.subComponent, { "onSubmit": self.onSubmit.bind(this) })}
+          <DialogTitle>{self.props.title}</DialogTitle>
+          <DialogContent>
+            { React.cloneElement(self.props.subComponent, { "onSubmit": self.onSubmit.bind(this) })}
+          </DialogContent>
+          <DialogActions>
+            {actions}
+          </DialogActions>
         </Dialog>
       </div>
     );

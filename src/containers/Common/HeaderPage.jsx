@@ -7,6 +7,25 @@ import LoginPage from "../Authentication/LoginPage";
 
 class HeaderPage extends Component {
 
+  constructor(props) {
+
+    super(props);
+
+    this.state = {
+      "menuAnchor": null,
+    };
+
+  }
+
+  onToggleMenu(event) {
+
+    // If the anchor exists, it's showing.
+    this.setState({
+      "menuAnchor": this.state.menuAnchor ? null : event.currentTarget,
+    });
+
+  }
+
   onOpenDisplayMessage(message, type = "danger", cb = null) {
 
     this.props.onOpenDisplayMessage(message, type, cb);
@@ -76,6 +95,8 @@ class HeaderPage extends Component {
         history={history}
         authentication={authentication}
         overridableMenuItems={overridableMenuItems}
+        menuAnchor={this.state.menuAnchor}
+        onToggleMenu={this.onToggleMenu.bind(this)}
         overrideMenuItemCallback={this.overrideMenuItemCallback.bind(this)}
       />
     );

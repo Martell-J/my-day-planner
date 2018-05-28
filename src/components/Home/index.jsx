@@ -70,7 +70,7 @@ class Home extends Component {
         <Grid container>
           <Grid container alignItems="center" item xl={12}>
             <Grid item xl xs/>
-            <Grid justify="center" item xl={6} xs={12}>
+            <Grid item xl={6} xs={12}>
               {/* I am not a designer... */}
               <Typography align="center" variant="title">
                 Notes:

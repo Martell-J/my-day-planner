@@ -9,25 +9,25 @@ const Login = ({ onSubmit, user, onInputChange, isSubmitted }) => {
   return (
     <form onSubmit={onSubmit}>
       <TextField
-        hintText="Username"
         name="username"
-        errorText={!username && isSubmitted ? "This field is required." : false}
-        floatingLabelText="Username"
+        label={!username && isSubmitted ? "This field is required." : false}
+        placeholder="Username"
+        value={username}
         fullWidth={true}
         onChange={onInputChange}
-        value={username}
+        error={(!username && isSubmitted)}
       /><br />
       <TextField
-        hintText="Password"
+        placeholder="Password"
         name="password"
-        errorText={!password && isSubmitted ? "This field is required." : false}
+        label={!password && isSubmitted ? "This field is required." : false}
+        error={(!password && isSubmitted)}
         type="password"
-        floatingLabelText="Password"
         fullWidth={true}
         onChange={onInputChange}
         value={password}
       /><br />
-    <Button variant="raised" type="submit" color="secondary" fullWidth={true} style={{ "marginTop": "10px" }} >Submit</Button>
+      <Button variant="raised" type="submit" color="secondary" fullWidth={true} style={{ "marginTop": "10px" }}>Submit</Button>
     </form>
   );
 

@@ -117,29 +117,24 @@ class DayPlannerPage extends Component {
   }
 
   // Handles changes for startDateTimes and endDateTimes
-  handleDateChange(event, date, isEndDate) {
+  handleDateChange(date, isEndDate) {
 
     let self = this;
     let newState = this.state;
     let errors = "";
+
+    // Clone the passed object
+    let newDate = moment(date);
 
     // Since we're handling validation and managing two incredibly similar controls,
     // we can simply determine the 'source' date type, and the 'other' date type
     const parameterName = "selected" + (isEndDate ? "End" : "Start") + "DateTime";
     const otherParameterName = "selected" + (!isEndDate ? "End" : "Start") + "DateTime";
 
-    // Create a moment object using the date passed
-    let newDate = moment(this.state[parameterName])
-      .set({
-        "year": date.getFullYear(),
-        "month": date.getMonth(),
-        "date": date.getDate(),
-      });
-
     // If we're working with the start date, ensure it can't exceed the enddate
     if (!isEndDate) {
 
-      if (newDate.isAfter(moment(this.state.selectedEndDateTime), "day")) {
+      if (date.isAfter(moment(this.state.selectedEndDateTime), "day")) {
 
         errors = "You can't plan backwards in time.";
         newDate = moment(this.state.selectedStartDateTime);
@@ -165,7 +160,7 @@ class DayPlannerPage extends Component {
 
   }
 
-  handleTimeChange(event, time, isEndTime) {
+  handleTimeChange(time, isEndTime) {
 
     let self = this;
     let stateUpdate = {};
@@ -180,7 +175,7 @@ class DayPlannerPage extends Component {
 
     // Build the dateTime (Or rather, JUST the time concatenated into a moment())
     // MaterialUI handles times as date objects, so build js Date() data into a moment()
-    let timeJSON = { "hour": time.getHours(), "minute": time.getMinutes(), "second": 0, "millisecond": 0 };
+    let timeJSON = { "hour": time.hours(), "minute": time.minutes(), "second": 0, "millisecond": 0 };
     let dateTime = null;
 
     // Determine data to validate by
@@ -227,10 +222,12 @@ class DayPlannerPage extends Component {
 
   }
 
-  handlePlanDetailsChange(event, details) {
+  handlePlanDetailsChange(event) {
+
+    const { value } = event.target;
 
     let self = this;
-    self.setState({ "planDetails": details });
+    self.setState({ "planDetails": value });
 
   }
 

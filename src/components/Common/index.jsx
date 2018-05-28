@@ -25,7 +25,7 @@ const Layout = ({ history, childrenWithProps, authentication,
         open={displayMessage.length !== 0}
         message={displayMessage}
         autoHideDuration={displayMessageTimeout}
-        onRequestClose={onCloseDisplayMessage}
+        onClose={onCloseDisplayMessage}
         className={("notify " + displayMessageType)}
       />
     </div>
