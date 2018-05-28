@@ -5,15 +5,17 @@ developing in a react-oriented environment, from 'start to finish'. The result i
 a pseudo-persistent data-oriented web application with basic validation, which allows
 you to operate basic navigational features, and create a plan for future dates.
 
+# Prerequisites
+
+- Yarn (Reccomended, not actually required)
+
 # Startup
 
 After pulling a copy of the repository
 
 'yarn install' - Garner dependencies
 
-'yarn run build' - Build the app into a client/server operable state
-
-'node server' - Runs the server, defaults to port 3000
+'yarn dev-server' - Build the app into a client/server operable state
 
 # Day Planner view
 
