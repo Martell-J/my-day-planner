@@ -8,7 +8,7 @@ import Axios from "axios";
 
 import reducers from "./reducers";
 
-import { logoutUser } from "./actions/authentication";
+import { logoutUser, refreshUser } from "./actions/authentication";
 import { startRehydrate, finishRehydrate } from "./actions/rehydrate";
 
 export default (initialState) => {
@@ -27,17 +27,16 @@ export default (initialState) => {
 
     if (store.getState().authentication.token) {
 
-      Axios("/api/token/verify", {
-        "method": "get",
-      }).then(() => {
+      store.dispatch(refreshUser(store.getState().authentication.user))
+        .then(() => {
 
-        store.dispatch(finishRehydrate());
+          store.dispatch(finishRehydrate());
 
-      }).catch(() => {
+        }).catch(() => {
 
-        store.dispatch(logoutUser());
+          store.dispatch(logoutUser());
 
-      });
+        });
 
     } else {
 

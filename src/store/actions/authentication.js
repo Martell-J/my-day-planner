@@ -134,11 +134,11 @@ export let refreshUser = (originalUser) => {
 
       dispatch(requestRefresh());
 
-      Axios("/api/user", {
+      Axios("/api/token/verify", {
         "method": "get",
       }).then((response) => {
 
-        const user = { ...originalUser, ...response.data.result };
+        const user = { ...originalUser, ...response.data.user };
 
         return resolve(dispatch(receiveRefresh(user, "Successful Refresh!")));
 
