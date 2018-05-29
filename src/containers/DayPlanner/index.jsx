@@ -6,14 +6,14 @@ const { queries } = require("../../helpers/queries.js");
 
 // JSON Objects to be passed to the 'set' method through a moment object to signify
 // the default time parameters for a start and end date. (9 AM / 5pm respectively)
-const emptyStartDateJSON = { "hour": 9, "minute": 0, "second": 0, "millisecond": 0 };
-const emptyEndDateJSON = { "hour": 17, "minute": 0, "second": 0, "millisecond": 0 };
+const emptyStartDateJSON = { "minute": 0, "second": 0, "millisecond": 0 };
+const emptyEndDateJSON = { "minute": 0, "second": 0, "millisecond": 0 };
 
 // Utilizing the above JSON items, initialize two dates with parameters relative to
 // the date 'type' (Start/end)
-const emptyDateTimes = {
-  "startDateTime": moment(new Date()).set(emptyStartDateJSON).toDate(),
-  "endDateTime": moment(new Date()).set(emptyEndDateJSON).toDate(),
+const getEmptyDateTimes = {
+  "getStartDateTime": () => moment(new Date()).set({ "minute": 0, "second": 0, "millisecond": 0 }).toDate(),
+  "getEndDateTime": () => moment(new Date()).set({ "minute": 0, "second": 0, "millisecond": 0 }).add(2, "hours").toDate(),
 };
 
 class DayPlannerPage extends Component {
@@ -26,8 +26,8 @@ class DayPlannerPage extends Component {
     super(props, context);
 
     this.state = {
-      "selectedStartDateTime": emptyDateTimes.startDateTime,
-      "selectedEndDateTime": emptyDateTimes.endDateTime,
+      "selectedStartDateTime": getEmptyDateTimes.getStartDateTime(),
+      "selectedEndDateTime": getEmptyDateTimes.getEndDateTime(),
       "planDetails": "",
       "errors": "",
       "events": [],
@@ -126,20 +126,23 @@ class DayPlannerPage extends Component {
     // Clone the passed object
     let newDate = moment(date);
 
+    const { selectedStartDateTime, selectedEndDateTime } = newState;
+
     // Since we're handling validation and managing two incredibly similar controls,
     // we can simply determine the 'source' date type, and the 'other' date type
     const parameterName = "selected" + (isEndDate ? "End" : "Start") + "DateTime";
     const otherParameterName = "selected" + (!isEndDate ? "End" : "Start") + "DateTime";
 
     // If we're working with the start date, ensure it can't exceed the enddate
-    if (!isEndDate) {
+    if (!isEndDate && date.isAfter(moment(selectedEndDateTime), "day")) {
 
-      if (date.isAfter(moment(this.state.selectedEndDateTime), "day")) {
+      errors = "You can't plan backwards in time.";
+      newDate = moment(selectedStartDateTime);
 
-        errors = "You can't plan backwards in time.";
-        newDate = moment(this.state.selectedStartDateTime);
+    } else if (isEndDate && date.isBefore(moment(selectedStartDateTime), "day")) {
 
-      }
+      errors = "You can't plan backwards in time.";
+      newDate = moment(selectedEndDateTime);
 
     }
 
@@ -151,8 +154,19 @@ class DayPlannerPage extends Component {
     // If they are BOTH the same date, negate the user's capability to encroach on conflicting times
     if (moment(this.state[otherParameterName]).isSame(newDate, "day")) {
 
-      newState.selectedStartDateTime = moment(newState.selectedStartDateTime).set(emptyStartDateJSON).toDate();
-      newState.selectedEndDateTime = moment(newState.selectedEndDateTime).set(emptyEndDateJSON).toDate();
+      // confirm via time as well.
+      const MINIMUM_MINUTES_AHEAD = 15;
+
+      const baseStart = moment(newState.selectedStartDateTime).add(MINIMUM_MINUTES_AHEAD, "minutes");
+      const baseEnd = moment(newState.selectedEndDateTime);
+
+      // If we're not at-least 15 minutes ahead of the start time, set it to be that way. (Min)
+      if (!baseStart.isSame(baseEnd, "minute") && baseStart.isAfter(baseEnd, "minute")) {
+
+        newState.selectedStartDateTime = moment(newState.selectedStartDateTime).toDate();
+        newState.selectedEndDateTime = moment(newState.selectedStartDateTime).add(MINIMUM_MINUTES_AHEAD, "minutes").toDate();
+
+      }
 
     }
 
@@ -201,7 +215,7 @@ class DayPlannerPage extends Component {
         if (selectedStartDateTime.isAfter(dateTime) || selectedStartDateTime.isSame(dateTime)) {
 
           // If it's invalid, set the time to its default.
-          stateUpdate[parameterName] = emptyDateTimes[paramString.toLowerCase() + "DateTime"];
+          stateUpdate[parameterName] = getEmptyDateTimes["get" + paramString + "DateTime"]();
           stateUpdate.errors = "You cannot plan backwards in time.";
 
         }
@@ -211,7 +225,7 @@ class DayPlannerPage extends Component {
       } else if (selectedEndDateTime.isBefore(dateTime) || selectedEndDateTime.isSame(dateTime)) {
 
         // If it's invalid, set the time to its default.
-        stateUpdate[parameterName] = emptyDateTimes[paramString.toLowerCase() + "DateTime"];
+        stateUpdate[parameterName] = getEmptyDateTimes["get" + paramString + "DateTime"]();
         stateUpdate.errors = "You cannot plan backwards in time.";
 
       }

@@ -9,6 +9,13 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 BigCalendar.setLocalizer(
   BigCalendar.momentLocalizer(moment)
 );
+const getEmptyDateTimes = {
+  "getStartDateTime": () => moment(new Date()).set({ "minute": 0, "second": 0, "millisecond": 0 }).toDate(),
+  "getEndDateTime": () => moment(new Date()).set({ "minute": 0, "second": 0, "millisecond": 0 }).add(2, "hours").toDate(),
+};
+
+const getMinimumDate = () => getEmptyDateTimes.getStartDateTime();
+const getMaximumDate = () => moment(getEmptyDateTimes.getStartDateTime()).add(15, "minutes");
 
 // Base DayPlanner example page
 const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDetailsChange, selectedStartDateTime,
@@ -44,7 +51,7 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
 
                           }}
                           value={selectedStartDateTime}
-                          minDate={new Date()}/>
+                          minDate={getMinimumDate()}/>
                       </Grid>
                       <Grid item xl={6} xs={12}>
                         <TimePicker
@@ -74,7 +81,7 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
                             handleDateChange(date, true);
 
                           }}
-                          minDate={selectedStartDateTime}
+                          minDate={getMaximumDate()}
                           value={selectedEndDateTime}/>
                       </Grid>
                       <Grid item xl={6} xs={12}>
