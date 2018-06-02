@@ -98,12 +98,14 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
                   </Paper>
                 </Grid>
               </Grid>
-              <Grid container item xl={12} xs={12} spacing={8}>
+              <Grid container item xl={12} xs={12} spacing={16} style={{ "margin": "0px 5px 0px 5px", "padding": "0px 5px 0px 5px" }}>
                 <Grid item xl={12} xs={12}>
                   <TextField
                     style={{ "textAlign": "left" }}
                     label="Plan Details"
                     multiline
+                    rows={5}
+                    rowsMax={10}
                     onChange={handlePlanDetailsChange}
                     fullWidth={true}
                     value={planDetails}/>
