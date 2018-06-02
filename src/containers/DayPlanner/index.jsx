@@ -4,11 +4,6 @@ import moment from "moment";
 
 const { queries } = require("../../helpers/queries.js");
 
-// JSON Objects to be passed to the 'set' method through a moment object to signify
-// the default time parameters for a start and end date. (9 AM / 5pm respectively)
-const emptyStartDateJSON = { "minute": 0, "second": 0, "millisecond": 0 };
-const emptyEndDateJSON = { "minute": 0, "second": 0, "millisecond": 0 };
-
 // Utilizing the above JSON items, initialize two dates with parameters relative to
 // the date 'type' (Start/end)
 const getEmptyDateTimes = {
