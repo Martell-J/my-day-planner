@@ -1,27 +1,6 @@
 const Axios = require("axios");
 const { api_key, api_url } = require("../config/config.json");
-
-// yoink!
-class ServerError extends Error {
-
-  constructor({ name, message, code }) {
-
-    super();
-    this.name = name || "ServerError";
-    this.message = message || "A generic server error has occurred. Please contact an administrator.";
-    this.code = code || "SERVER_ERROR";
-
-  }
-
-  toJson() {
-
-    const { name, message, code } = this;
-
-    return { name, message, code };
-
-  }
-
-}
+const { ServerError } = require("../../src/resources/errors.js");
 
 // Tie in an interceptor to handle all errors (response errors, or network errors),
 // So we can expect a standard in how errors return (always with code+message, typed
@@ -70,13 +49,8 @@ const sendRequest = (req, res, method) => {
 
   let headers = {
     api_key,
+    ...req.headers
   };
-
-  if (req.headers.hasOwnProperty("authentication")) {
-
-    headers.authentication = req.headers.authentication;
-
-  }
 
   // Return the request to the external API,
   // if an error is thrown, it should always be typed as a ServerError, so call .toJSON()
