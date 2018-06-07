@@ -1,4 +1,5 @@
 const Axios = require("axios");
+// eslint-disable-next-line camelcase
 const { api_key, api_url } = require("../config/config.json");
 const { ServerError } = require("../../src/resources/errors.js");
 
@@ -48,14 +49,16 @@ Axios.interceptors.response.use((response) => response, (err) => {
 const sendRequest = (req, res, method) => {
 
   let headers = {
+  // eslint-disable-next-line camelcase
     api_key,
-    ...req.headers
+    ...req.headers,
   };
 
   // Return the request to the external API,
   // if an error is thrown, it should always be typed as a ServerError, so call .toJSON()
   // so Axios will passback the request to the client-side call as a JSON-typed error.
   Axios({
+    // eslint-disable-next-line camelcase
     "url": api_url + req.url,
     method,
     headers,

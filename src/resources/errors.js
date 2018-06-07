@@ -1,8 +1,7 @@
-class ServerError extends Error {
+class ServerError {
 
   constructor({ name, message, code }) {
 
-    super();
     this.name = name || "ServerError";
     this.message = message || "A generic server error has occurred. Please contact an administrator.";
     this.code = code || "SERVER_ERROR";
@@ -19,14 +18,17 @@ class ServerError extends Error {
 
 }
 
-class RequestCancelledError extends Error {
+class RequestCancelledError extends ServerError {
 
-  constructor({ name, message, code }) {
+  constructor(
+    message = "The request has been cancelled.",
+    code = "REQUEST_CANCELLED_ERROR") {
 
-    super();
-    this.name = name || "RequestCancelledError";
-    this.message = message || "The request has been cancelled.";
-    this.code = code || "REQUEST_CANCELLED_ERROR";
+    super({
+      "name": "RequestCancelledError",
+      message,
+      code,
+    });
 
   }
 
