@@ -23,7 +23,7 @@ class LoginPage extends Component {
 
   }
 
-  componentWillMount() {
+  componentDidMount() {
 
     if (this.state.authentication.isAuthenticated) {
 

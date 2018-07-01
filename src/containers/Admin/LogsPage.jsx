@@ -16,7 +16,7 @@ class LogsPage extends Component {
 
   }
 
-  componentWillMount() {
+  componentDidMount() {
 
     if (!isUserValid(this.props.authentication, MINIMUM_VALID_ROLE)) {
 

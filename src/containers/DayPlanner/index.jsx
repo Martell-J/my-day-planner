@@ -31,7 +31,7 @@ class DayPlannerPage extends Component {
   }
 
   // Before the component mounts, initialize the 'events'
-  componentWillMount() {
+  componentDidMount() {
 
     let self = this;
 
@@ -50,7 +50,7 @@ class DayPlannerPage extends Component {
 
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidReceiveProps(nextProps) {
 
     this.setState({
       ...nextProps,
