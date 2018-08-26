@@ -9,7 +9,7 @@ import deepPurple from "@material-ui/core/colors/deepPurple";
 import MomentUtils from "material-ui-pickers/utils/moment-utils";
 import MuiPickersUtilsProvider from "material-ui-pickers/utils/MuiPickersUtilsProvider";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-import "./handlers/requestHandler.js";
+// import "./handlers/requestHandler.js";
 
 const { store, persistor } = createStore();
 

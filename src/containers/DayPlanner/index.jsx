@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Axios from "axios"
 import DayPlanner from "../../components/DayPlanner";
 import moment from "moment";
 
@@ -31,7 +32,7 @@ class DayPlannerPage extends Component {
   }
 
   // Before the component mounts, initialize the 'events'
-  componentDidMount() {
+  componentWillMount() {
 
     let self = this;
 
@@ -50,7 +51,7 @@ class DayPlannerPage extends Component {
 
   }
 
-  componentDidReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps) {
 
     this.setState({
       ...nextProps,

@@ -6,6 +6,7 @@ const { ServerError } = require("../../src/resources/errors.js");
 // Tie in an interceptor to handle all errors (response errors, or network errors),
 // So we can expect a standard in how errors return (always with code+message, typed
 // as JSON.)
+
 Axios.interceptors.response.use((response) => response, (err) => {
 
   let newError = new ServerError({});
@@ -63,6 +64,9 @@ const sendRequest = (req, res, method) => {
     method,
     headers,
     "data": req.hasOwnProperty("body") ? req.body : null,
+    "validateStatus": (status) => {
+      return status < 400; // Reject only if the status code is greater than or equal to 400
+    }
   })
     .then((externalResponse) => res.status(externalResponse.status).json(externalResponse.data))
     .catch((err) => {

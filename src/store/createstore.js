@@ -19,9 +19,9 @@ export default (initialState) => {
     compose(applyMiddleware(thunk, createLogger()))
   );
 
-  store.dispatch(startRehydrate());
-
   const persistor = persistStore(store, null, () => {
+
+    store.dispatch(startRehydrate());
 
     Axios.defaults.headers.common.authentication = store.getState().authentication.token;
 

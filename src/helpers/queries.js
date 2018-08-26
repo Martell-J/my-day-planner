@@ -1,5 +1,5 @@
-import Axios from "axios";
 import moment from "moment";
+import Axios from "axios"
 const _ = require("underscore");
 const Promise = require("bluebird");
 
@@ -21,6 +21,7 @@ export const queries = {
   // Returns a list of "events" to send to a bigcalendar component
   "getPlans": () => {
     return new Promise((resolve, reject) => {
+      console.log(Axios.defaults.headers.common.authentication)
       // Query the local /db/getplans route
       Axios.get("/api/plans")
       .then((result) =>  {
