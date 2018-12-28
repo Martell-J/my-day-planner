@@ -77,7 +77,7 @@ class LayoutPage extends React.Component {
   render() {
 
     const { isRehydrated } = this.props.rehydrate;
-
+    
     if (isRehydrated) {
 
       // Whitelist items to pass down to the child

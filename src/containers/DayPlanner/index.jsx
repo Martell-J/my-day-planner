@@ -32,7 +32,7 @@ class DayPlannerPage extends Component {
   }
 
   // Before the component mounts, initialize the 'events'
-  componentWillMount() {
+  componentDidMount() {
 
     let self = this;
 
@@ -42,19 +42,10 @@ class DayPlannerPage extends Component {
 
     }
 
-    queries.getPlans()
-      .then((events) => {
+    queries.getPlans((events) => {
 
-        self.setState({ events });
+      self.setState({ events });
 
-      });
-
-  }
-
-  componentWillReceiveProps(nextProps) {
-
-    this.setState({
-      ...nextProps,
     });
 
   }
@@ -237,6 +228,7 @@ class DayPlannerPage extends Component {
     const { value } = event.target;
 
     let self = this;
+
     self.setState({ "planDetails": value });
 
   }

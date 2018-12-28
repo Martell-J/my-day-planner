@@ -3,7 +3,7 @@ class ServerError {
   constructor({ name, message, code }) {
 
     this.name = name || "ServerError";
-    this.message = message || "A generic server error has occurred. Please contact an administrator.";
+    this.message = message || "A generic server error has occurred. Please contact an administrator. W";
     this.code = code || "SERVER_ERROR";
 
   }

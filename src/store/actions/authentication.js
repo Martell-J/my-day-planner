@@ -76,7 +76,10 @@ export let loginUser = (username, password) => {
 
           return resolve(dispatch(receiveLogin(user, token, new Date(exp), "Successful Login!")));
 
-        }).catch(reject);
+        }).catch((e) => {
+          return reject(e);
+
+        });
 
       }).catch((err) => {
 
@@ -140,11 +143,15 @@ export let refreshUser = (originalUser) => {
 
         const user = { ...originalUser, ...response.data.user };
 
+        console.log(user, response);
+
         return resolve(dispatch(receiveRefresh(user, "Successful Refresh!")));
 
       }).catch((err) => {
 
         let error = err.response.data;
+
+        console.log(err, err.response, err.response.data);
 
         return reject(dispatch(refreshError(error)));
 
