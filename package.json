@@ -41,7 +41,6 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.9.1",
     "redux-thunk": "^2.2.0",
-    "sequelize": "^4.4.2",
     "underscore": "^1.8.3"
   },
   "devDependencies": {

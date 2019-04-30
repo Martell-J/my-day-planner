@@ -83,10 +83,6 @@ class LoginPage extends Component {
 
       this.props.onSubmit(os);
 
-    } else {
-
-      os;
-
     }
 
   }
