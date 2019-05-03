@@ -1,12 +1,23 @@
 import storage from "redux-persist/lib/storage";
 
-import { persistCombineReducers } from "redux-persist";
+import { persistCombineReducers, createTransform } from "redux-persist";
 
 import authentication from "./authentication";
 import rehydrate from "./rehydrate";
 
+// We alter hydration on the callback.
+const SetTransform = createTransform(
+  (inboundState, key) => {
+    return { ...inboundState, isRehydrated: false };
+  },
+  (outboundState, key) => {
+    return { ...outboundState };
+  },
+  { whitelist: ["rehydrate"] }
+);
+
 const rootReducer = persistCombineReducers({
-  "transforms": [],
+  "transforms": [SetTransform],
   "key": "root",
   storage,
 }, {

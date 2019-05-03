@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Axios from "axios"
 import DayPlanner from "../../components/DayPlanner";
+import PropTypes from "prop-types";
 import moment from "moment";
 
 const { queries } = require("../../helpers/queries.js");
@@ -41,12 +41,12 @@ class DayPlannerPage extends Component {
       self.props.history.push("/");
 
     }
+    queries.getPlans()
+      .then((events) => {
 
-    queries.getPlans((events) => {
+        this.setState({ events });
 
-      self.setState({ events });
-
-    });
+      });
 
   }
 
@@ -260,5 +260,13 @@ class DayPlannerPage extends Component {
   }
 
 }
+
+DayPlannerPage.propTypes = {
+  "authentication": PropTypes.object.isRequired,
+  "history": PropTypes.object.isRequired,
+  "dispatch": PropTypes.func.isRequired,
+  "onSubmit": PropTypes.func,
+  "onOpenDisplayMessage": PropTypes.func.isRequired,
+};
 
 export default DayPlannerPage;

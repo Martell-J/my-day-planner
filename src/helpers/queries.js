@@ -22,7 +22,7 @@ export const queries = {
   "getPlans": () => {
     return new Promise((resolve, reject) => {
       // Query the local /db/getplans route
-      Axios.get("/api/plans")
+      return Axios.get("/api/plans")
       .then((result) =>  {
         // Iterate through the returned events and pull that data out of the response.
         // and resolve that array data
@@ -38,9 +38,9 @@ export const queries = {
   // of all events added to-date
   "insertPlan": (postJSON) => {
     return new Promise((resolve, reject) => {
-      Axios.post("/api/plan", postJSON)
+      return Axios.post("/api/plan", postJSON)
       .then((result) =>  {
-        resolve(mapEvents(result.data));
+        return resolve(mapEvents(result.data));
       })
       .catch((err) => {
         return reject(err);
