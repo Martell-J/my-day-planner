@@ -1,6 +1,8 @@
 const Axios = require("axios");
 // eslint-disable-next-line camelcase
-const { api_key, api_url } = require("../config/config.json");
+const config = require("../config/config.json");
+const api_key = process.env.API_KEY || config.api_key;
+const api_url = process.env.API_URL || config.api_url;
 const { ServerError } = require("../../src/resources/errors.js");
 
 // Tie in an interceptor to handle all errors (response errors, or network errors),
