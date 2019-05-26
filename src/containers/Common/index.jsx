@@ -30,7 +30,7 @@ class LayoutPage extends React.Component {
   onOpenDisplayMessage(message, type = "danger", redirectCallback = null, hideAfterMS = DEFAULT_DISPLAY_MESSAGE_TIMEOUT) {
 
     this.setState({
-      "displayMessage": message,
+      "displayMessage": message || "",
       "displayMessageType": type,
       "displayMessageRedirect": redirectCallback,
       "displayMessageTimeout": hideAfterMS,
@@ -77,7 +77,7 @@ class LayoutPage extends React.Component {
   render() {
 
     const { isRehydrated } = this.props.rehydrate;
-    
+
     if (isRehydrated) {
 
       // Whitelist items to pass down to the child
