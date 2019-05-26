@@ -8,11 +8,10 @@ import Routes from "./Routes";
 
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/lib/integration/react";
-import injectTapEventPlugin from "react-tap-event-plugin";
 
 // Implement browserrouter and switch for route management, implement a 404 page
 // <Route path="/login" component={LoginPage} />
-injectTapEventPlugin();
+
 const App = ({ store, persistor }) =>
   <Provider store={store}>
     <PersistGate persistor={persistor}>
