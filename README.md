@@ -17,6 +17,8 @@ After pulling a copy of the repository
 
 'yarn dev-server' - Build the app into a client/server operable state
 
+'DEVELOPMENT' - add "proxy": "PROXY_ADDRESS" property
+
 # Day Planner view
 
 ![DayPlannerView](../master/docs/dayplannerexample.PNG)
