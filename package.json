@@ -23,6 +23,7 @@
     "cross-env": "^5.1.5",
     "eslint-plugin-react": "^7.6.1",
     "express": "^4.15.3",
+    "http-proxy-middleware": "^0.19.1",
     "material-ui-pickers": "^1.0.0-rc.9",
     "moment": "^2.18.1",
     "morgan": "^1.8.2",
