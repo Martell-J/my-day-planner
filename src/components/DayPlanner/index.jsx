@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, TextField, Paper, Card, CardHeader, CardContent, Snackbar, Grid } from "@material-ui/core";
-import { DatePicker, TimePicker } from "material-ui-pickers";
+import { DatePicker, TimePicker } from "@material-ui/pickers";
 import PropTypes from "prop-types";
 import BigCalendar from "react-big-calendar";
 import moment from "moment";

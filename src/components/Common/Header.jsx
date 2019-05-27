@@ -104,7 +104,7 @@ const Header = ({ history, authentication, overridableMenuItems, overrideMenuIte
                 : items.unauthenticatedItems
             }
           </Menu>
-          <Typography color="inherit" variant="title">
+          <Typography color="inherit" variant="h5">
             My Day Planner
           </Typography>
         </Toolbar>

@@ -27,7 +27,7 @@ const Login = ({ onSubmit, user, onInputChange, isSubmitted }) => {
         onChange={onInputChange}
         value={password}
       /><br />
-      <Button variant="raised" type="submit" color="secondary" fullWidth={true} style={{ "marginTop": "10px" }}>Submit</Button>
+      <Button type="submit" variant="contained" color="primary" fullWidth={true} style={{ "marginTop": "10px" }}>Submit</Button>
     </form>
   );
 

@@ -6,8 +6,10 @@ import App from "./App";
 import createStore from "./store/createstore";
 import blue from "@material-ui/core/colors/blue";
 import deepPurple from "@material-ui/core/colors/deepPurple";
-import MomentUtils from "material-ui-pickers/utils/moment-utils";
-import MuiPickersUtilsProvider from "material-ui-pickers/MuiPickersUtilsProvider";
+
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 // import "./handlers/requestHandler.js";
 //

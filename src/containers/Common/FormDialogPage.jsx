@@ -58,9 +58,9 @@ class FormDialogPage extends Component {
 
     const actions = [
       <Button
-        variant="raised"
+        variant="contained"
         style={{ "marginRight": "10px" }}
-        color="primary"
+        color="secondary"
         key="fd-close"
         onClick={self.closeDialog.bind(this)}
       >Close</Button>,
