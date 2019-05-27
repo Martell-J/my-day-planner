@@ -7,14 +7,14 @@ const app = express();
 // parse body messages for post route
 const bodyParser = require("body-parser");
 
-const PRODUCTION_PORT = 8080;
+const PRODUCTION_PORT = process.env.PORT || 8080;
 const DEVELOPMENT_PORT = 3001;
 
 const { env } = process;
 
 const { NODE_ENV } = env;
 
-const PORT = NODE_ENV === "production" ? PRODUCTION_PORT : DEVELOPMENT_PORT;
+const PORT = (NODE_ENV === "production" ? PRODUCTION_PORT : DEVELOPMENT_PORT);
 
 app.use(bodyParser.json());
 

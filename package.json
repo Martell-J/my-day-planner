@@ -4,7 +4,7 @@
   "main": "./server/app.js",
   "scripts": {
     "start": "react-scripts start",
-    "server": "react-scripts build && concurrently --kill-others-on-fail \"cross-env NODE_ENV=production node server\"",
+    "server": "NODE_ENV=production && node server",
     "build": "react-scripts build",
     "dev-server": "react-scripts build && concurrently --kill-others-on-fail \"cross-env NODE_ENV=development node server\" \"react-scripts start\"",
     "test": "react-scripts test --env=jsdom",

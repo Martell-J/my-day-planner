@@ -60,10 +60,7 @@ const sendRequest = (req, res, method) => {
   const body = req.hasOwnProperty("body") ? req.body : null;
   const url = api_url + req.url;
 
-  // Return the request to the external API,
-  // if an error is thrown, it should always be typed as a ServerError, so call .toJSON()
-  // so Axios will passback the request to the client-side call as a JSON-typed error.
-  Axios({
+  const conf = {
     // eslint-disable-next-line camelcase
     "url": url,
     method,
@@ -72,7 +69,12 @@ const sendRequest = (req, res, method) => {
     "validateStatus": (status) => {
       return status < 400; // Reject only if the status code is greater than or equal to 400
     }
-  })
+  };
+
+  // Return the request to the external API,
+  // if an error is thrown, it should always be typed as a ServerError, so call .toJSON()
+  // so Axios will passback the request to the client-side call as a JSON-typed error.
+  Axios(conf)
     .then((externalResponse) => res.status(externalResponse.status).json(externalResponse.data))
     .catch((err) => {
 
