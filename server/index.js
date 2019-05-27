@@ -16,6 +16,8 @@ const { NODE_ENV } = env;
 
 const PORT = (NODE_ENV === "production" ? PRODUCTION_PORT : DEVELOPMENT_PORT);
 
+const API = require("./helpers/api.js");
+
 app.use(bodyParser.json());
 
 // We could conditionally catch errors if we're in dev vs. prod, but in this
@@ -30,7 +32,16 @@ process.on("unhandledRejection", (err) => {
 
 // Inject the db routes via express router, pass app to it (sequelize is tied in)
 const dbRoutes = require("./routes/db.js");
-app.use("/api", dbRoutes);
+
+const serverRequestMethods = [ "get", "post", "put", "delete" ];
+
+// Generify each server-handled request method and inject the pertinent type
+// into express Router
+serverRequestMethods.forEach((srm) => {
+
+  app[srm]("/api/*", (req, res) => API[srm](req, res));
+
+});
 
 // Setup logger
 app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
