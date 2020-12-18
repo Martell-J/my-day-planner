@@ -10,7 +10,7 @@ export const isUserValid = (authentication, minType = null) => {
 
   const { user, isAuthenticated } = authentication;
 
-  const { user_type } = user;
+  const userType = user.user_type;
 
   // If the user is authenticated
   if (isAuthenticated) {
@@ -20,7 +20,7 @@ export const isUserValid = (authentication, minType = null) => {
 
       // Check if the type that the user_type resolves to (value) is of or greater
       // than the prerequisite roles' value
-      const typeRights = rightsSchema[user_type];
+      const typeRights = rightsSchema[userType];
 
       const minTypeRights = rightsSchema[minType];
 

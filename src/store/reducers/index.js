@@ -7,13 +7,17 @@ import rehydrate from "./rehydrate";
 
 // We alter hydration on the callback.
 const SetTransform = createTransform(
-  (inboundState, key) => {
-    return { ...inboundState, isRehydrated: false };
+  (inboundState) => {
+
+    return { ...inboundState, "isRehydrated": false };
+
   },
-  (outboundState, key) => {
+  (outboundState) => {
+
     return { ...outboundState };
+
   },
-  { whitelist: ["rehydrate"] }
+  { "whitelist": ["rehydrate"] }
 );
 
 const rootReducer = persistCombineReducers({

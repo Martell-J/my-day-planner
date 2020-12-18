@@ -70,11 +70,15 @@ class FormDialogPage extends Component {
       <div>
         <Dialog
           open={self.state.open}
-          style={{ width: "70%", margin: "0 auto" }}
+
+          // style={{ width: "70%", margin: "0 auto" }}
           onClose={self.toggleDialog.bind(this)}
         >
           <DialogTitle>{self.props.title}</DialogTitle>
-          <DialogContent style={{ width: "100%" }}>
+          <DialogContent
+
+            // style={{ width: "100%" }}
+          >
             { React.cloneElement(self.props.subComponent, { "onSubmit": self.onSubmit.bind(this) })}
           </DialogContent>
           <DialogActions>

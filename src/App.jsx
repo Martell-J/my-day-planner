@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 // Migration from React Router 3 to 4
 // See: https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
@@ -18,5 +19,10 @@ const App = ({ store, persistor }) =>
       <Routes/>
     </PersistGate>
   </Provider>;
+
+App.propTypes = {
+  "store": PropTypes.object.isRequired,
+  "persistor": PropTypes.object.isRequired,
+};
 
 export default App;

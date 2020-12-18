@@ -2,13 +2,13 @@ import React from "react";
 import { Button, TextField, Paper, Card, CardHeader, CardContent, Snackbar, Grid } from "@material-ui/core";
 import { DatePicker, TimePicker } from "@material-ui/pickers";
 import PropTypes from "prop-types";
-import BigCalendar from "react-big-calendar";
+import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "./style.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-BigCalendar.setLocalizer(
-  BigCalendar.momentLocalizer(moment)
-);
+
+const localizer = momentLocalizer(moment);
+
 const getEmptyDateTimes = {
   "getStartDateTime": () => moment(new Date()).set({ "minute": 0, "second": 0, "millisecond": 0 }).toDate(),
   "getEndDateTime": () => moment(new Date()).set({ "minute": 0, "second": 0, "millisecond": 0 }).add(2, "hours").toDate(),
@@ -20,6 +20,7 @@ const getMaximumDate = () => moment(getEmptyDateTimes.getStartDateTime()).add(15
 // Base DayPlanner example page
 const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDetailsChange, selectedStartDateTime,
   selectedEndDateTime, planDetails, events, onErrorDismissal, errors }) => {
+
   /*
     TODO: Implement mobile-handling for BigCalendar
   */
@@ -120,8 +121,9 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
               <Grid item xs/>
             </Grid>
             <Grid item xl={6} xs={12}>
-              <BigCalendar
+              <Calendar
                 events={events}
+                localizer={localizer}
                 views={[ "month", "agenda" ]}
                 style={{ "width": "100%", "height": "100%" }}
               />

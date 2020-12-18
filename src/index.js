@@ -7,15 +7,18 @@ import createStore from "./store/createstore";
 import blue from "@material-ui/core/colors/blue";
 import deepPurple from "@material-ui/core/colors/deepPurple";
 
-import MomentUtils from '@date-io/moment';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import MomentUtils from "@date-io/moment";
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
-// import "./handlers/requestHandler.js";
-//
-//<script>
-//window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {}
-//</script>
+
+/*
+  import "./handlers/requestHandler.js";
+
+  <script>
+  window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {}
+  </script>
+*/
 
 const { store, persistor } = createStore();
 

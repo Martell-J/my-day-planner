@@ -68,7 +68,7 @@ class DayPlannerPage extends Component {
 
       self.setState({ "errors": "Your plan conflicts with an existing plan!" });
 
-    // Check if the user has set a title/detail line for the plan
+      // Check if the user has set a title/detail line for the plan
 
     } else if (this.state.planDetails === "") {
 
@@ -207,7 +207,7 @@ class DayPlannerPage extends Component {
 
         }
 
-      // Check to see if this 'end time' comes before the start date, or is the exact same time overall
+        // Check to see if this 'end time' comes before the start date, or is the exact same time overall
 
       } else if (selectedEndDateTime.isBefore(dateTime) || selectedEndDateTime.isSame(dateTime)) {
 
