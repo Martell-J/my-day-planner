@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, TextField, Paper, Card, CardHeader, CardContent, Snackbar, Grid } from "@material-ui/core";
-import { DatePicker, TimePicker } from "@material-ui/pickers";
+import {
+  KeyboardTimePicker,
+  KeyboardDatePicker } from "@material-ui/pickers";
 import PropTypes from "prop-types";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
@@ -43,7 +45,7 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
                         <h4>Start Date/Time</h4>
                       </Grid>
                       <Grid item xl={6} xs={12}>
-                        <DatePicker
+                        <KeyboardDatePicker
                           label="Select Date"
                           mode="landscape"
                           onChange={(date) => {
@@ -55,7 +57,7 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
                           minDate={getMinimumDate()}/>
                       </Grid>
                       <Grid item xl={6} xs={12}>
-                        <TimePicker
+                        <KeyboardTimePicker
                           label="Select Time"
                           onChange={(time) => {
 
@@ -74,7 +76,7 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
                         <h4>End Date/Time</h4>
                       </Grid>
                       <Grid item xl={6} xs={12}>
-                        <DatePicker
+                        <KeyboardDatePicker
                           label="Select Date"
                           mode="landscape"
                           onChange={(date) => {
@@ -86,7 +88,7 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
                           value={selectedEndDateTime}/>
                       </Grid>
                       <Grid item xl={6} xs={12}>
-                        <TimePicker
+                        <KeyboardTimePicker
                           label="Select Time"
                           onChange={(time) => {
 
@@ -99,7 +101,7 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
                   </Paper>
                 </Grid>
               </Grid>
-              <Grid container item xl={12} xs={12} spacing={16} style={{ "margin": "0px 5px 0px 5px", "padding": "0px 5px 0px 5px" }}>
+              <Grid container item xl={12} xs={12} spacing={2} style={{ "margin": "0px 5px 0px 5px", "padding": "0px 5px 0px 5px" }}>
                 <Grid item xl={12} xs={12}>
                   <TextField
                     style={{ "textAlign": "left" }}
@@ -113,7 +115,7 @@ const DayPlanner = ({ addPlan, handleDateChange, handleTimeChange, handlePlanDet
                 </Grid>
                 <Grid item xl={12} xs={12}>
                   <Button
-                    variant="raised"
+                    variant="contained"
                     color="primary"
                     onClick={addPlan}>Add a Plan</Button>
                 </Grid>

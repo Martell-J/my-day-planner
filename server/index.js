@@ -6,7 +6,7 @@ const app = express();
 const config = require("./config/config.json");
 const api_key = process.env.API_KEY || config.api_key;
 const api_url = process.env.API_URL || config.api_url;
-const httpProxy = require("http-proxy-middleware");
+const { createProxyMiddleware } = require("http-proxy-middleware");
 // parse body messages for post route
 const bodyParser = require("body-parser");
 
@@ -47,42 +47,44 @@ serverRequestMethods.forEach((srm) => {
 
 });*/
 
-app.use('/api', httpProxy({
+app.use('/api', createProxyMiddleware({
   "logLevel" : 'debug',
   "target" : api_url,
   "changeOrigin" : true,
   "secure" : false,
   "xfwd" : true,
   "pathRewrite" : {'^/api' : ''},
-  "onProxyReq" : function (proxyReq, req, res) {
-  if (proxyReq.getHeader('origin')) {
-    proxyReq.setHeader('origin', api_url);
+  "onProxyReq" : (proxyReq, req, res) => {
+    if (proxyReq.getHeader('origin')) {
+      proxyReq.setHeader('origin', api_url);
     }
-    proxyReq.setHeader('api_key', api_key);
+      proxyReq.setHeader('api_key', api_key);
     }
   })
 );
 
 // Setup logger
 // app.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
-
+console.log(NODE_ENV);
 // If we're in production, serve the files and static assets.
 if (NODE_ENV === "production") {
 
- // Serve static assets
- app.use(express.static(path.resolve(__dirname, "..", "build")));
+  console.log(NODE_ENV);
 
- app.get("*", (req, res) => {
+  // Serve static assets
+  app.use(express.static(path.resolve(__dirname, "..", "build")));
 
- // Render base index.html page in every route
- res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
+  app.get("*", (req, res) => {
 
- });
+  // Render base index.html page in every route
+  res.sendFile(path.resolve(__dirname, "..", "build", "index.html"));
+
+  });
 
 }
 
 app.listen(PORT, () => {
 
- console.log(`App listening on port ${PORT}!`);
+  console.log(`App listening on port ${PORT}!`);
 
 });

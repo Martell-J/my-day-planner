@@ -11,14 +11,14 @@ class Home extends Component {
 
     return (
       <Paper style={{ "padding": "16px" }} >
-        <Typography align="center" variant="display2" component="h1">
+        <Typography align="center" variant="h4" component="h1">
           My Day Planner
         </Typography>
-        <Typography align="center" variant="subheading" component="h4">
+        <Typography align="center" variant="subtitle1" component="h4">
           Landing Page
         </Typography>
         <br/>
-        <Typography align="center" variant="headline" component="h3">
+        <Typography align="center" variant="h5" component="h3">
           What is it?
         </Typography>
         <Typography component="p">
@@ -38,7 +38,7 @@ class Home extends Component {
         <Grid container>
           <Grid container item xl={6} xs={12}>
             <Grid item xl={12} xs={12}>
-              <Typography align="center" variant="title">
+              <Typography align="center" variant="h6">
                 Navigation
               </Typography>
               <Typography component="p">
@@ -53,7 +53,7 @@ class Home extends Component {
           </Grid>
           <Grid container item xl={6} xs={12}>
             <Grid item xl={12} xs={12}>
-              <Typography align="center" variant="title">
+              <Typography align="center" variant="h6">
                 Example Usage
               </Typography>
               <Typography component="p">
@@ -72,46 +72,42 @@ class Home extends Component {
             <Grid item xl xs/>
             <Grid item xl={6} xs={12}>
               {/* I am not a designer... */}
-              <Typography align="center" variant="title">
+              <Typography align="center" variant="h6">
                 Notes:
               </Typography>
-              <Typography align="center" variant="body1">
-                <ul>
-                  <li>
-                    <p>If you cannot operate the DayPlanner page, you may not have MySQL properly installed.</p>
-                  </li>
-                  <li>
-                    <p>This example app is in a constant-state of development. As such, bugs are expected, and examples/operability may change
-                    at unexpected intervals.</p>
-                  </li>
-                  <li>
-                    <p>This example app may be expanded into a list of example feature apps, in order to demonstrate proficiency and understanding
-                    of other package implementations with react. When this occurs, the repository handling this data may purged.</p>
-                  </li>
-                  <li>
-                    <p>All styled-components (Header, Cards, Buttons etc.) are generated through the implementation of @material-ui/core (See: <a href="https://github.com/callemall/@material-ui/core">Their Repository</a> ). This example
-                    heavily relies on the consistency in functionality of these components (Date Pickers, Text Entry Fields), and related packages
-                    as well (BigCalendar, Sequelize, Axios). If any bugs are found related to package changes after example updates, feel free
-                    to open an issue request on the repository containing this project.</p>
-                  </li>
-                </ul>
-              </Typography>
-              <Typography align="center" variant="title">
+              <ul>
+                <li>
+                  If you cannot operate the DayPlanner page, you may not have MySQL properly installed.
+                </li>
+                <li>
+                  This example app is in a constant-state of development. As such, bugs are expected, and examples/operability may change
+                  at unexpected intervals.
+                </li>
+                <li>
+                  This example app may be expanded into a list of example feature apps, in order to demonstrate proficiency and understanding
+                  of other package implementations with react. When this occurs, the repository handling this data may purged.
+                </li>
+                <li>
+                  All styled-components (Header, Cards, Buttons etc.) are generated through the implementation of @material-ui/core (See: <a href="https://github.com/callemall/@material-ui/core">Their Repository</a> ). This example
+                  heavily relies on the consistency in functionality of these components (Date Pickers, Text Entry Fields), and related packages
+                  as well (BigCalendar, Sequelize, Axios). If any bugs are found related to package changes after example updates, feel free
+                  to open an issue request on the repository containing this project.
+                </li>
+              </ul>
+              <Typography align="center" variant="h6">
                 A few more things...
               </Typography>
-              <Typography align="center" variant="body1">
-                <ul>
-                  <li>
-                    <p>The functionality of this repo now REQUIRES running the external my-day-planner-api repository (See: <a href="https://github.com/Martell-J/my-day-planner-api">That Repository</a> ). For everything
-                      to operate smoothly, please run my-day-planner-api first, then build a production-version of this repo to allow cross-origin requests via a locally-running server. This can now be accomplished with
-                      the script &#39;yarn dev-server&#39; (or npm run dev-server if you&#39;re not using yarn.)</p>
-                  </li>
-                  <li>
-                    <p>Not everything in this repository is to be coded &#39;to spec&#39;, sometimes interesting ideas or features may be implmented simply for
-                    learning purposes (or fun, because I&#39;m insane and enjoy this...).</p>
-                  </li>
-                </ul>
-              </Typography>
+              <ul>
+                <li>
+                  The functionality of this repo now REQUIRES running the external my-day-planner-api repository (See: <a href="https://github.com/Martell-J/my-day-planner-api">That Repository</a> ). For everything
+                    to operate smoothly, please run my-day-planner-api first, then build a production-version of this repo to allow cross-origin requests via a locally-running server. This can now be accomplished with
+                    the script &#39;yarn dev-server&#39; (or npm run dev-server if you&#39;re not using yarn.)
+                </li>
+                <li>
+                  Not everything in this repository is to be coded &#39;to spec&#39;, sometimes interesting ideas or features may be implmented simply for
+                  learning purposes (or fun, because I&#39;m insane and enjoy this...).
+                </li>
+              </ul>
             </Grid>
             <Grid item xl xs/>
           </Grid>
