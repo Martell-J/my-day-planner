@@ -27,7 +27,7 @@
     "eslint-plugin-react": "^7.6.1",
     "express": "^4.15.3",
     "http-proxy-middleware": "^1.0.6",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "morgan": "^1.8.2",
     "mysql2": "^2.2.5",
     "prop-types": "^15.5.10",
